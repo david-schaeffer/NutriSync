@@ -41,6 +41,9 @@
                         <color key="backgroundColor" systemColor="systemGreenColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="kDm-xG-Iwy" userLabel="Tab Bar"/>
+                    <connections>
+                        <outlet property="welcomeLabel" destination="ELy-fn-Nvn" id="mML-St-gw3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
