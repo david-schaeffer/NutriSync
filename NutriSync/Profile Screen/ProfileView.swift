@@ -17,8 +17,8 @@ class ProfileView: UIView {
     var userEmailLabel: UILabel!
     
     var accountSettingsLabel: UILabel!
-    var changeUsernameEmailLabel: UILabel!
-    var changePasswordLabel: UILabel!
+    var changeUsernameEmailButton: UIButton!
+    var changePasswordButton: UIButton!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,8 +29,8 @@ class ProfileView: UIView {
         setupUsernameLabel()
         setupUserEmailLabel()
         setupAccountSettingsLabel()
-        setupChangeUsernameEmailLabel()
-        setupChangePasswordLabel()
+        setupChangeUsernameEmailButton()
+        setupChangePasswordButton()
     }
     
     func setupProfileLabel() {
@@ -56,38 +56,42 @@ class ProfileView: UIView {
     }
     
     func setupUsernameLabel() {
-        profileLabel = UILabel()
-        profileLabel.font = UIFont.boldSystemFont(ofSize: 24)
-        profileLabel.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(profileLabel)
+        userNameLabel = UILabel()
+        userNameLabel.text = "Dana Abdo"
+        userNameLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        userNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(userNameLabel)
     }
     
     func setupUserEmailLabel() {
-        profileLabel = UILabel()
-        profileLabel.font = UIFont.boldSystemFont(ofSize: 24)
-        profileLabel.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(profileLabel)
+        userEmailLabel = UILabel()
+        userEmailLabel.text = "danaabdo@gmail.com"
+        userEmailLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        userEmailLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(userEmailLabel)
     }
     
     func setupAccountSettingsLabel() {
-        profileLabel = UILabel()
-        profileLabel.font = UIFont.boldSystemFont(ofSize: 24)
-        profileLabel.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(profileLabel)
+        accountSettingsLabel = UILabel()
+        accountSettingsLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        accountSettingsLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(accountSettingsLabel)
     }
     
-    func setupChangeUsernameEmailLabel() {
-        profileLabel = UILabel()
-        profileLabel.font = UIFont.boldSystemFont(ofSize: 24)
-        profileLabel.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(profileLabel)
+    func setupChangeUsernameEmailButton() {
+        changeUsernameEmailButton = UIButton()
+        changeUsernameEmailButton.setTitle("Change username or email", for: .normal)
+        changeUsernameEmailButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+        changeUsernameEmailButton.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(changeUsernameEmailButton)
     }
     
-    func setupChangePasswordLabel() {
-        profileLabel = UILabel()
-        profileLabel.font = UIFont.boldSystemFont(ofSize: 24)
-        profileLabel.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(profileLabel)
+    func setupChangePasswordButton() {
+        changePasswordButton = UIButton()
+        changePasswordButton.setTitle("Change password", for: .normal)
+        changePasswordButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+        changePasswordButton.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(changePasswordButton)
     }
     
     required init?(coder: NSCoder) {
