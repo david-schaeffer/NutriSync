@@ -9,12 +9,89 @@ import UIKit
 
 class ProfileView: UIView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    // COMPONENTS
+    var profileLabel: UILabel!
+    var profilePicture: UIImage!
+    var editProfilePictureButton: UIButton!
+    var userNameLabel: UILabel!
+    var userEmailLabel: UILabel!
+    
+    var accountSettingsLabel: UILabel!
+    var changeUsernameEmailLabel: UILabel!
+    var changePasswordLabel: UILabel!
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = .white
+        setupProfileLabel()
+        setupProfilePicture()
+        setupEditProfilePictureButton()
+        setupUsernameLabel()
+        setupUserEmailLabel()
+        setupAccountSettingsLabel()
+        setupChangeUsernameEmailLabel()
+        setupChangePasswordLabel()
     }
-    */
+    
+    func setupProfileLabel() {
+        profileLabel = UILabel()
+        profileLabel.text = "Profile"
+        profileLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        profileLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(profileLabel)
+    }
+    
+    func setupProfilePicture() {
+        profilePicture = UIImage(named: "profilePicture"), for: .normal
+        profilePicture.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(profilePicture)
+    }
+    
+    func setupEditProfilePictureButton() {
+        editProfilePictureButton = UIButton()
+        editProfilePictureButton.text = "Change profile picture"
+        editProfilePictureButton.font = UIFont.boldSystemFont(ofSize: 24)
+        profileLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(profileLabel)
+    }
+    
+    func setupUsernameLabel() {
+        profileLabel = UILabel()
+        profileLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        profileLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(profileLabel)
+    }
+    
+    func setupUserEmailLabel() {
+        profileLabel = UILabel()
+        profileLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        profileLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(profileLabel)
+    }
+    
+    func setupAccountSettingsLabel() {
+        profileLabel = UILabel()
+        profileLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        profileLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(profileLabel)
+    }
+    
+    func setupChangeUsernameEmailLabel() {
+        profileLabel = UILabel()
+        profileLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        profileLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(profileLabel)
+    }
+    
+    func setupChangePasswordLabel() {
+        profileLabel = UILabel()
+        profileLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        profileLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(profileLabel)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
 }
