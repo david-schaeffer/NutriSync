@@ -11,7 +11,7 @@ class ProfileView: UIView {
 
     // COMPONENTS
     var profileLabel: UILabel!
-    var profilePicture: UIImage!
+    var profilePicture: UIImageView!
     var editProfilePictureButton: UIButton!
     var userNameLabel: UILabel!
     var userEmailLabel: UILabel!
@@ -41,19 +41,23 @@ class ProfileView: UIView {
         addSubview(profileLabel)
     }
     
-    func setupProfilePicture() {
-        profilePicture = UIImage(named: "profilePicture"), for: .normal
+    func setupProfilePicture(){
+        profilePicture = UIImageView()
+        profilePicture.contentMode = .scaleAspectFill
+        profilePicture.clipsToBounds = true
+        profilePicture.layer.cornerRadius = 50
         profilePicture.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(profilePicture)
+        self.addSubview(profilePicture)
     }
     
+   
     func setupEditProfilePictureButton() {
-        editProfilePictureButton = UIButton()
+        editProfilePictureButton = UIButton(type: .system)
         editProfilePictureButton.setTitle("Change profile picture", for: .normal)
-        editProfilePictureButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+        editProfilePictureButton.showsMenuAsPrimaryAction = true
         editProfilePictureButton.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(editProfilePictureButton)
-    }
+        self.addSubview(editProfilePictureButton)
+        }
     
     func setupUsernameLabel() {
         userNameLabel = UILabel()
