@@ -49,10 +49,10 @@ class ProfileView: UIView {
     
     func setupEditProfilePictureButton() {
         editProfilePictureButton = UIButton()
-        editProfilePictureButton.text = "Change profile picture"
-        editProfilePictureButton.font = UIFont.boldSystemFont(ofSize: 24)
-        profileLabel.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(profileLabel)
+        editProfilePictureButton.setTitle("Change profile picture", for: .normal)
+        editProfilePictureButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+        editProfilePictureButton.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(editProfilePictureButton)
     }
     
     func setupUsernameLabel() {
