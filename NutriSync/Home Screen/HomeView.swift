@@ -10,6 +10,7 @@ import UIKit
 class HomeView: UIView {
     
     // COMPONENTS
+    var scrollView: UIScrollView!
     var profileButton: UIButton!
     var welcomeLabel: UILabel!
     var factLabel: UILabel!
@@ -18,27 +19,55 @@ class HomeView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
+        setupView()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupView()
+    }
+    
+    func setupView() {
+        self.backgroundColor = .lightGray
+        
+        setupScrollView()
         setupProfileButton()
         setupWelcomeLabel()
         setupFactLabel()
         setupDailyProgressLabel()
         setupMonthlyProgressLabel()
+        
+        initConstraints()
+    }
+    
+    func setupScrollView() {
+        scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Border
+        scrollView.layer.cornerRadius = 20
+        scrollView.layer.masksToBounds = true
+        scrollView.layer.borderWidth = 1
+        scrollView.layer.borderColor = UIColor.red.cgColor
+        
+        self.addSubview(scrollView)
     }
     
     func setupProfileButton() {
-        profileButton = UIButton()
-        profileButton.setImage(UIImage(named: "profile"), for: .normal)
+        profileButton = UIButton(type: .custom)
+        profileButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        profileButton.setImage(UIImage(systemName: "person.crop.circle"), for: .normal)
         profileButton.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(profileButton)
+//        scrollView.addSubview(profileButton)
+        
     }
     
     func setupWelcomeLabel() {
         welcomeLabel = UILabel()
         welcomeLabel.text = "Welcome, Dana"
-        welcomeLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        welcomeLabel.font = UIFont.boldSystemFont(ofSize: 36)
         welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(welcomeLabel)
+        scrollView.addSubview(welcomeLabel)
     }
     
     func setupFactLabel() {
@@ -46,7 +75,7 @@ class HomeView: UIView {
         factLabel.text = "Your daily calorie intake is 2,000 calories"
         factLabel.font = UIFont.boldSystemFont(ofSize: 24)
         factLabel.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(factLabel)
+        scrollView.addSubview(factLabel)
     }
     
     func setupDailyProgressLabel() {
@@ -54,7 +83,7 @@ class HomeView: UIView {
         dailyProgressLabel.text = "Daily Progress: 1,000 calories"
         dailyProgressLabel.font = UIFont.boldSystemFont(ofSize: 24)
         dailyProgressLabel.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(dailyProgressLabel)
+        scrollView.addSubview(dailyProgressLabel)
     }
     
     func setupMonthlyProgressLabel() {
@@ -62,34 +91,28 @@ class HomeView: UIView {
         monthlyProgressLabel.text = "Monthly Progress: 1,000 calories"
         monthlyProgressLabel.font = UIFont.boldSystemFont(ofSize: 24)
         monthlyProgressLabel.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(monthlyProgressLabel)
+        scrollView.addSubview(monthlyProgressLabel)
     }
     
     func initConstraints() {
         NSLayoutConstraint.activate([
-            profileButton.topAnchor.constraint(equalTo: topAnchor),
-            profileButton.leadingAnchor.constraint(equalTo: leadingAnchor),
-            profileButton.trailingAnchor.constraint(equalTo: trailingAnchor),
+            scrollView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor),
+            scrollView.heightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.heightAnchor),
             
-            welcomeLabel.topAnchor.constraint(equalTo: profileButton.bottomAnchor),
-            welcomeLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            welcomeLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            welcomeLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
+            welcomeLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
             
-            factLabel.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor),
-            factLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            factLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            factLabel.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 20),
+            factLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
             
-            dailyProgressLabel.topAnchor.constraint(equalTo: factLabel.bottomAnchor),
-            dailyProgressLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            dailyProgressLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            dailyProgressLabel.topAnchor.constraint(equalTo: factLabel.bottomAnchor, constant: 20),
+            dailyProgressLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
             
-            monthlyProgressLabel.topAnchor.constraint(equalTo: dailyProgressLabel.bottomAnchor),
-            monthlyProgressLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            monthlyProgressLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            monthlyProgressLabel.topAnchor.constraint(equalTo: dailyProgressLabel.bottomAnchor, constant: 20),
+            monthlyProgressLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+            monthlyProgressLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ])
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

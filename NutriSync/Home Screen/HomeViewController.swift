@@ -1,29 +1,31 @@
 //
-//  FeedViewController.swift
+//  ViewController.swift
 //  NutriSync
 //
-//  Created by Dana Abdo on 11/5/24.
+//  Created by David Schaeffer on 11/1/24.
 //
 
 import UIKit
 
-class FeedViewController: UIViewController {
+class HomeViewController: UIViewController {
+    
+    var homeView: HomeView!
+    
+    override func loadView() {
+        self.homeView = HomeView()
+        view = homeView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        let profileButton = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle"), style: .plain, target: self, action: #selector (openProfile))
+//        homeView.profileButton.addTarget(self, action: #selector(openProfile), for: .touchUpInside)
+        navigationItem.rightBarButtonItem = profileButton
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc func openProfile() {
+        let profileVC = ProfileViewController()
+        profileVC.title = "Profile"
+        navigationController?.pushViewController(profileVC, animated: true)
     }
-    */
-
 }
