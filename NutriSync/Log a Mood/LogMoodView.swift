@@ -60,17 +60,32 @@ class LogMoodView: UIView {
         moodScrollView.addSubview(moodStackView)
         
         let moods = ["Anger", "Fear", "Sadness", "Disgust", "Content", "Enjoyment"]
-        for mood in moods {
-            let button = UIButton()
-            button.setTitle(mood, for: .normal)
-            button.setTitleColor(.systemBlue, for: .normal)
-            button.titleLabel?.font = .systemFont(ofSize: 16)
-            button.layer.cornerRadius = 20
-            button.layer.borderWidth = 1
-            button.layer.borderColor = UIColor.systemGray.cgColor
-//            button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
-            moodStackView.addArrangedSubview(button)
-        }
+            for mood in moods {
+                let button = UIButton()
+                button.setTitle(mood, for: .normal)
+                button.setTitleColor(.black, for: .normal)
+                button.titleLabel?.font = .systemFont(ofSize: 16)
+                
+                var config = UIButton.Configuration.plain()
+                config.title = mood
+                config.baseForegroundColor = .black
+                config.baseBackgroundColor = .white
+                config.cornerStyle = .capsule
+                
+                config.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10)
+                
+                button.configuration = config
+                
+                button.layer.borderWidth = 1
+                button.layer.borderColor = UIColor.systemGray4.cgColor
+                button.layer.cornerRadius = 20
+                
+
+                moodStackView.addArrangedSubview(button)
+                
+                // will need to add selection stuff here
+//                button.addTarget(self, action: #selector(toggleButtonSelection(_:)), for: .touchUpInside)
+            }
     }
     
     func setupStressLabel() {
@@ -83,7 +98,7 @@ class LogMoodView: UIView {
     
     func setupStressSlider() {
         stressSlider = UISlider()
-        stressSlider.minimumValue = 1
+        stressSlider.minimumValue = 0
         stressSlider.maximumValue = 10
         stressSlider.value = 1
         stressSlider.translatesAutoresizingMaskIntoConstraints = false
@@ -92,7 +107,7 @@ class LogMoodView: UIView {
     
     func setupMinLabel() {
         minLabel = UILabel()
-        minLabel.text = "1"
+        minLabel.text = "0"
         minLabel.textColor = .secondaryLabel
         minLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(minLabel)
