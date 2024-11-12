@@ -11,11 +11,17 @@ class HomeView: UIView {
     
     // COMPONENTS
     var scrollView: UIScrollView!
-    var profileButton: UIButton!
     var welcomeLabel: UILabel!
+    var factView: UIView!
     var factLabel: UILabel!
+    var factText: UILabel!
+    var dailyProgressView: UIView!
     var dailyProgressLabel: UILabel!
+    var dailyProgressText: UILabel!
+    var monthlyProgressView: UIView!
     var monthlyProgressLabel: UILabel!
+    var monthlyProgressCalendar: UICalendarView!
+    let calendarViewDelegate: CalendarViewDelegate = CalendarViewDelegate()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,10 +34,9 @@ class HomeView: UIView {
     }
     
     func setupView() {
-        self.backgroundColor = .lightGray
+        self.backgroundColor = .white
         
         setupScrollView()
-        setupProfileButton()
         setupWelcomeLabel()
         setupFactLabel()
         setupDailyProgressLabel()
@@ -43,55 +48,95 @@ class HomeView: UIView {
     func setupScrollView() {
         scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        
-        // Border
-        scrollView.layer.cornerRadius = 20
-        scrollView.layer.masksToBounds = true
-        scrollView.layer.borderWidth = 1
-        scrollView.layer.borderColor = UIColor.red.cgColor
-        
         self.addSubview(scrollView)
-    }
-    
-    func setupProfileButton() {
-        profileButton = UIButton(type: .custom)
-        profileButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
-        profileButton.setImage(UIImage(systemName: "person.crop.circle"), for: .normal)
-        profileButton.translatesAutoresizingMaskIntoConstraints = false
-//        scrollView.addSubview(profileButton)
-        
     }
     
     func setupWelcomeLabel() {
         welcomeLabel = UILabel()
-        welcomeLabel.text = "Welcome, Dana"
+        welcomeLabel.text = "Welcome, <User>!"
         welcomeLabel.font = UIFont.boldSystemFont(ofSize: 36)
         welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(welcomeLabel)
     }
     
     func setupFactLabel() {
+        factView = UIView()
+        factView.layer.cornerRadius = 12
+        factView.layer.masksToBounds = false
+        factView.layer.shadowColor = UIColor.black.cgColor
+        factView.layer.shadowOffset = CGSize(width: -1, height: 1)
+        factView.layer.shadowOpacity = 0.5
+        factView.layer.shadowRadius = 10
+        factView.layer.shadowPath = UIBezierPath(rect: factView.bounds).cgPath
+        factView.layer.shouldRasterize = true
+        factView.layer.rasterizationScale = UIScreen.main.scale
+        factView.backgroundColor = UIColor.secondarySystemBackground
+        factView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(factView)
+        
         factLabel = UILabel()
-        factLabel.text = "Your daily calorie intake is 2,000 calories"
-        factLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        factLabel.text = "Fact of the moment"
+        factLabel.font = UIFont.boldSystemFont(ofSize: 18)
         factLabel.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(factLabel)
+        factView.addSubview(factLabel)
+        
+        factText = UILabel()
+        factText.text = "An avocado has twice as much potassium as a banana!"
+        factText.font = UIFont.systemFont(ofSize: 18)
+        factText.textAlignment = .left
+        factText.lineBreakMode = .byWordWrapping
+        factText.numberOfLines = 0
+        factText.translatesAutoresizingMaskIntoConstraints = false
+        factView.addSubview(factText)
     }
     
     func setupDailyProgressLabel() {
+        dailyProgressView = UIView()
+        dailyProgressView.layer.cornerRadius = 12
+        dailyProgressView.layer.masksToBounds = true
+        dailyProgressView.layer.borderWidth = 1
+        dailyProgressView.layer.borderColor = UIColor.blue.cgColor
+        dailyProgressView.backgroundColor = UIColor.secondarySystemBackground
+        dailyProgressView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(dailyProgressView)
+        
         dailyProgressLabel = UILabel()
-        dailyProgressLabel.text = "Daily Progress: 1,000 calories"
-        dailyProgressLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        dailyProgressLabel.text = "Today"
+        dailyProgressLabel.font = UIFont.boldSystemFont(ofSize: 18)
         dailyProgressLabel.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(dailyProgressLabel)
+        dailyProgressView.addSubview(dailyProgressLabel)
+        
+        dailyProgressText = UILabel()
+        dailyProgressText.text = "No logs today."
+        dailyProgressText.font = UIFont.systemFont(ofSize: 18)
+        dailyProgressText.textAlignment = .center
+        dailyProgressText.translatesAutoresizingMaskIntoConstraints = false
+        dailyProgressView.addSubview(dailyProgressText)
     }
     
     func setupMonthlyProgressLabel() {
+        monthlyProgressView = UIView()
+        monthlyProgressView.layer.cornerRadius = 12
+        monthlyProgressView.layer.masksToBounds = true
+        monthlyProgressView.layer.borderWidth = 1
+        monthlyProgressView.layer.borderColor = UIColor.orange.cgColor
+        monthlyProgressView.backgroundColor = UIColor.secondarySystemBackground
+        monthlyProgressView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(monthlyProgressView)
+        
         monthlyProgressLabel = UILabel()
-        monthlyProgressLabel.text = "Monthly Progress: 1,000 calories"
-        monthlyProgressLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        monthlyProgressLabel.text = "This Month"
+        monthlyProgressLabel.font = UIFont.boldSystemFont(ofSize: 18)
         monthlyProgressLabel.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(monthlyProgressLabel)
+        monthlyProgressView.addSubview(monthlyProgressLabel)
+        
+        monthlyProgressCalendar = UICalendarView()
+        monthlyProgressCalendar.delegate = calendarViewDelegate
+        monthlyProgressCalendar.calendar = Calendar(identifier: .gregorian)
+        monthlyProgressCalendar.locale = Locale(identifier: "en_US_POSIX")
+        monthlyProgressCalendar.fontDesign = .rounded
+        monthlyProgressCalendar.translatesAutoresizingMaskIntoConstraints = false
+        monthlyProgressView.addSubview(monthlyProgressCalendar)
     }
     
     func initConstraints() {
@@ -104,15 +149,45 @@ class HomeView: UIView {
             welcomeLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
             welcomeLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
             
-            factLabel.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 20),
-            factLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+            factView.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 20),
+            factView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+            factView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -40),
+            factView.heightAnchor.constraint(equalTo: welcomeLabel.heightAnchor, multiplier: 3.0),
             
-            dailyProgressLabel.topAnchor.constraint(equalTo: factLabel.bottomAnchor, constant: 20),
-            dailyProgressLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+            factLabel.topAnchor.constraint(equalTo: factView.topAnchor, constant: 20),
+            factLabel.leadingAnchor.constraint(equalTo: factView.leadingAnchor, constant: 20),
+            factLabel.widthAnchor.constraint(equalTo: factView.widthAnchor, constant: -40),
             
-            monthlyProgressLabel.topAnchor.constraint(equalTo: dailyProgressLabel.bottomAnchor, constant: 20),
-            monthlyProgressLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
-            monthlyProgressLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+            factText.topAnchor.constraint(equalTo: factLabel.bottomAnchor, constant: 10),
+            factText.leadingAnchor.constraint(equalTo: factView.leadingAnchor, constant: 20),
+            factText.widthAnchor.constraint(equalTo: factView.widthAnchor, constant: -40),
+            
+            dailyProgressView.topAnchor.constraint(equalTo: factView.bottomAnchor, constant: 20),
+            dailyProgressView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+            dailyProgressView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -40),
+            dailyProgressView.heightAnchor.constraint(greaterThanOrEqualToConstant: 100),
+            
+            dailyProgressLabel.topAnchor.constraint(equalTo: dailyProgressView.topAnchor, constant: 20),
+            dailyProgressLabel.leadingAnchor.constraint(equalTo: dailyProgressView.leadingAnchor, constant: 20),
+            dailyProgressLabel.widthAnchor.constraint(equalTo: dailyProgressView.widthAnchor, constant: -40),
+            
+            dailyProgressText.topAnchor.constraint(equalTo: dailyProgressLabel.bottomAnchor, constant: 10),
+            dailyProgressText.leadingAnchor.constraint(equalTo: dailyProgressView.leadingAnchor, constant: 20),
+            dailyProgressText.widthAnchor.constraint(equalTo: dailyProgressView.widthAnchor, constant: -40),
+            
+            monthlyProgressView.topAnchor.constraint(equalTo: dailyProgressView.bottomAnchor, constant: 20),
+            monthlyProgressView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+            monthlyProgressView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -40),
+            monthlyProgressView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20),
+            monthlyProgressView.heightAnchor.constraint(greaterThanOrEqualToConstant: 600),
+            
+            monthlyProgressLabel.topAnchor.constraint(equalTo: monthlyProgressView.topAnchor, constant: 20),
+            monthlyProgressLabel.leadingAnchor.constraint(equalTo: monthlyProgressView.leadingAnchor, constant: 20),
+            monthlyProgressLabel.widthAnchor.constraint(equalTo: monthlyProgressView.widthAnchor, constant: -40),
+            
+            monthlyProgressCalendar.topAnchor.constraint(equalTo: monthlyProgressLabel.bottomAnchor, constant: 10),
+            monthlyProgressCalendar.leadingAnchor.constraint(equalTo: monthlyProgressView.leadingAnchor, constant: 20),
+            monthlyProgressCalendar.widthAnchor.constraint(equalTo: monthlyProgressView.widthAnchor, constant: -40),
         ])
     }
 }

@@ -19,8 +19,16 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let profileButton = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle"), style: .plain, target: self, action: #selector (openProfile))
-//        homeView.profileButton.addTarget(self, action: #selector(openProfile), for: .touchUpInside)
         navigationItem.rightBarButtonItem = profileButton
+        
+        let tapCalendar = UITapGestureRecognizer(target: self, action: #selector (openCalendar))
+        homeView.monthlyProgressView.addGestureRecognizer(tapCalendar)
+    }
+    
+    @objc func openCalendar() {
+        let calendarVC = CalendarViewController()
+        calendarVC.title = "Calendar"
+        navigationController?.pushViewController(calendarVC, animated: true)
     }
     
     @objc func openProfile() {
