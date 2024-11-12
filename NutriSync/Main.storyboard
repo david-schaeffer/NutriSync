@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home View Controller-->
+        <!--Log Meal View Controller-->
         <scene sceneID="KW7-dW-Ffh">
             <objects>
-                <viewController id="goz-Q8-Xdd" customClass="HomeViewController" customModule="NutriSync" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="goz-Q8-Xdd" customClass="LogMealViewController" customModule="NutriSync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3zw-5y-qtm">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

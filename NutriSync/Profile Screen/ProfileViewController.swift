@@ -12,7 +12,7 @@ class ProfileViewController: UIViewController {
     let profileScreen = ProfileView()
     var pickedImage:UIImage?
 
-    var delegate:ViewController!
+    var delegate:HomeViewController!
     
     
     override func loadView() {
