@@ -10,8 +10,9 @@ import PhotosUI
 
 class ProfileViewController: UIViewController {
     let profileScreen = ProfileView()
-    var pickedImage: UIImage?
+    var pickedImage:UIImage?
 
+    var delegate:HomeViewController!
     
     
     override func loadView() {
@@ -27,7 +28,7 @@ class ProfileViewController: UIViewController {
     
     
     func getMenuImagePicker() -> UIMenu{
-            let menuItems = [
+            var menuItems = [
                 UIAction(title: "Camera",handler: {(_) in
                     self.pickUsingCamera()
                 }),
