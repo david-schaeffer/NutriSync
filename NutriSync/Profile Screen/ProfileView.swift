@@ -18,6 +18,7 @@ class ProfileView: UIView {
     
     var accountSettingsLabel: UILabel!
     var changeUsernameEmailButton: UIButton!
+    var buttonSeparator: UIView!
     var changePasswordButton: UIButton!
     
     override init(frame: CGRect) {
@@ -30,6 +31,7 @@ class ProfileView: UIView {
         setupUserEmailLabel()
         setupAccountSettingsLabel()
         setupChangeUsernameEmailButton()
+        setupButtonSeparator()
         setupChangePasswordButton()
         initConstraints()
     }
@@ -58,7 +60,7 @@ class ProfileView: UIView {
         editProfilePictureButton.showsMenuAsPrimaryAction = true
         editProfilePictureButton.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(editProfilePictureButton)
-        }
+    }
     
     func setupUsernameLabel() {
         userNameLabel = UILabel()
@@ -85,18 +87,27 @@ class ProfileView: UIView {
     }
     
     func setupChangeUsernameEmailButton() {
-        changeUsernameEmailButton = UIButton()
+        changeUsernameEmailButton = UIButton(type: .system)
         changeUsernameEmailButton.setTitle("Change username or email", for: .normal)
         changeUsernameEmailButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        changeUsernameEmailButton.setTitleColor(.black, for: .normal)
         changeUsernameEmailButton.contentHorizontalAlignment = .left
         changeUsernameEmailButton.translatesAutoresizingMaskIntoConstraints = false
         addSubview(changeUsernameEmailButton)
     }
     
+    func setupButtonSeparator() {
+        buttonSeparator = UIView()
+        buttonSeparator.backgroundColor = .lightGray // Set the line color
+        buttonSeparator.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(buttonSeparator)
+    }
+    
     func setupChangePasswordButton() {
-        changePasswordButton = UIButton()
+        changePasswordButton = UIButton(type: .system)
         changePasswordButton.setTitle("Change password", for: .normal)
         changePasswordButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        changePasswordButton.setTitleColor(.black, for: .normal)
         changePasswordButton.contentHorizontalAlignment = .left
         changePasswordButton.translatesAutoresizingMaskIntoConstraints = false
         addSubview(changePasswordButton)
@@ -108,29 +119,34 @@ class ProfileView: UIView {
     
     func initConstraints() {
         NSLayoutConstraint.activate([
-            profileLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
-            profileLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            profileLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
+            profileLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
             
-            profilePicture.topAnchor.constraint(equalTo: profileLabel.bottomAnchor, constant: 24),
+            profilePicture.topAnchor.constraint(equalTo: profileLabel.bottomAnchor, constant: 20),
             profilePicture.centerXAnchor.constraint(equalTo: centerXAnchor),
             profilePicture.widthAnchor.constraint(equalToConstant: 100),
             profilePicture.heightAnchor.constraint(equalToConstant: 100),
             
-            editProfilePictureButton.topAnchor.constraint(equalTo: profilePicture.bottomAnchor, constant: 8),
+            editProfilePictureButton.topAnchor.constraint(equalTo: profilePicture.bottomAnchor, constant: 10),
             editProfilePictureButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             
-            userNameLabel.topAnchor.constraint(equalTo: editProfilePictureButton.bottomAnchor, constant: 16),
+            userNameLabel.topAnchor.constraint(equalTo: editProfilePictureButton.bottomAnchor, constant: 20),
             userNameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             userEmailLabel.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: 4),
             userEmailLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             accountSettingsLabel.topAnchor.constraint(equalTo: userEmailLabel.bottomAnchor, constant: 32),
-            accountSettingsLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            accountSettingsLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             
-            changeUsernameEmailButton.topAnchor.constraint(equalTo: accountSettingsLabel.bottomAnchor, constant: 16),
-            changeUsernameEmailButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            changeUsernameEmailButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            changeUsernameEmailButton.topAnchor.constraint(equalTo: accountSettingsLabel.bottomAnchor, constant: 20),
+            changeUsernameEmailButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            changeUsernameEmailButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            
+            buttonSeparator.topAnchor.constraint(equalTo: changeUsernameEmailButton.bottomAnchor, constant: 8),
+            buttonSeparator.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            buttonSeparator.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            buttonSeparator.heightAnchor.constraint(equalToConstant: 1),
             
             changePasswordButton.topAnchor.constraint(equalTo: changeUsernameEmailButton.bottomAnchor, constant: 16),
             changePasswordButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
