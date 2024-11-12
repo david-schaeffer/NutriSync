@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6Mb-bb-oWb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qyq-mo-1fz">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
@@ -22,28 +22,47 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hNe-OB-eLI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="3255.7251908396947" y="-86.619718309859152"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="YUV-J4-5XW">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="qyq-mo-1fz" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XJN-qN-QmT">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="9lT-qb-iII" kind="relationship" relationship="viewControllers" id="TgQ-JX-S0E"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rLm-Ng-8fL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="1402.2900763358778" y="-86.619718309859152"/>
         </scene>
         <!--Home-->
-        <scene sceneID="J7N-L8-eNE">
+        <scene sceneID="ndi-Wk-6Jf">
             <objects>
-                <navigationController title="Home" automaticallyAdjustsScrollViewInsets="NO" id="6Mb-bb-oWb" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9lT-qb-iII" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="rsn-Hk-TdZ"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="d58-pG-V8x">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8aB-Gb-YN5">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="goz-Q8-Xdd" kind="relationship" relationship="rootViewController" id="z0b-9O-Pfz"/>
+                        <segue destination="goz-Q8-Xdd" kind="relationship" relationship="rootViewController" id="tRb-ev-cmh"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8cG-a1-0lI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KQ4-v7-4t9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="475.57251908396944" y="-86.619718309859152"/>
+            <point key="canvasLocation" x="2329.0076335877861" y="-86.619718309859152"/>
         </scene>
     </scenes>
     <resources>
+        <image name="house" catalog="system" width="128" height="104"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
