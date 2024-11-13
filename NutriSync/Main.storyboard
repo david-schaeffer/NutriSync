@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Log Meal View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="KW7-dW-Ffh">
             <objects>
-                <viewController id="goz-Q8-Xdd" customClass="LogMealViewController" customModule="NutriSync" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="goz-Q8-Xdd" customClass="HomeViewController" customModule="NutriSync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3zw-5y-qtm">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -36,10 +36,10 @@
                     </tabBar>
                     <connections>
                         <segue destination="9lT-qb-iII" kind="relationship" relationship="viewControllers" id="TgQ-JX-S0E"/>
-                        <segue destination="emS-4B-vf7" kind="relationship" relationship="viewControllers" id="DcA-hK-Uso"/>
-                        <segue destination="6x0-3q-qZT" kind="relationship" relationship="viewControllers" id="x0m-ey-5cm"/>
-                        <segue destination="OGz-0Q-LHD" kind="relationship" relationship="viewControllers" id="A5q-a7-uqm"/>
-                        <segue destination="pyd-ob-xfM" kind="relationship" relationship="viewControllers" id="j0K-vj-vAq"/>
+                        <segue destination="l1S-4v-WMu" kind="relationship" relationship="viewControllers" id="DcA-hK-Uso"/>
+                        <segue destination="wsx-5b-SPj" kind="relationship" relationship="viewControllers" id="x0m-ey-5cm"/>
+                        <segue destination="DhU-Oe-6vw" kind="relationship" relationship="viewControllers" id="A5q-a7-uqm"/>
+                        <segue destination="7IB-17-o3G" kind="relationship" relationship="viewControllers" id="j0K-vj-vAq"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rLm-Ng-8fL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -65,7 +65,7 @@
             </objects>
             <point key="canvasLocation" x="-25" y="699"/>
         </scene>
-        <!--Log-->
+        <!--View Controller-->
         <scene sceneID="eRp-Il-9CQ">
             <objects>
                 <viewController id="6x0-3q-qZT" sceneMemberID="viewController">
@@ -75,29 +75,29 @@
                         <viewLayoutGuide key="safeArea" id="vnz-oI-ZW4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Log" image="plus" catalog="system" id="5Zl-Kh-HBR"/>
+                    <navigationItem key="navigationItem" id="lZ3-or-adW"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3aZ-eZ-kFK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1402" y="699"/>
+            <point key="canvasLocation" x="1402" y="1451"/>
         </scene>
-        <!--Calendar-->
+        <!--Calendar View Controller-->
         <scene sceneID="i7j-aC-HBd">
             <objects>
-                <viewController id="OGz-0Q-LHD" sceneMemberID="viewController">
+                <viewController id="OGz-0Q-LHD" customClass="CalendarViewController" customModule="NutriSync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fvn-EV-Wvz" customClass="CalendarView" customModule="NutriSync" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="dgB-zb-jQV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Calendar" image="calendar" catalog="system" id="Mea-Qn-Ftf"/>
+                    <navigationItem key="navigationItem" id="kJY-5b-xTr"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hog-ZQ-3c9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2109" y="699"/>
+            <point key="canvasLocation" x="2140" y="1451"/>
         </scene>
-        <!--Insights-->
+        <!--Insights View Controller-->
         <scene sceneID="ywh-sc-mkU">
             <objects>
                 <viewController id="pyd-ob-xfM" customClass="InsightsViewController" customModule="NutriSync" customModuleProvider="target" sceneMemberID="viewController">
@@ -107,13 +107,13 @@
                         <viewLayoutGuide key="safeArea" id="IFw-ow-aet"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Insights" image="chart.bar" catalog="system" id="0Vd-ud-yLd"/>
+                    <navigationItem key="navigationItem" id="KdY-aE-Rud"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yZX-kh-x02" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2805" y="699"/>
+            <point key="canvasLocation" x="2876" y="1451"/>
         </scene>
-        <!--Education-->
+        <!--Education View Controller-->
         <scene sceneID="tlf-LR-e0U">
             <objects>
                 <viewController id="emS-4B-vf7" customClass="EducationViewController" customModule="NutriSync" customModuleProvider="target" sceneMemberID="viewController">
@@ -123,11 +123,87 @@
                         <viewLayoutGuide key="safeArea" id="sbB-dh-TDA"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Education" image="book" catalog="system" id="BNL-0p-nIu"/>
+                    <navigationItem key="navigationItem" id="NfK-vK-sTe"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s1p-3G-z3g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="691" y="699"/>
+            <point key="canvasLocation" x="691" y="1451"/>
+        </scene>
+        <!--Log-->
+        <scene sceneID="fEZ-0D-Hla">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wsx-5b-SPj" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Log" image="plus" catalog="system" id="5Zl-Kh-HBR"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YQ0-mu-wMo">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="6x0-3q-qZT" kind="relationship" relationship="rootViewController" id="MlM-gW-vQf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A31-y1-dg0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1402" y="699"/>
+        </scene>
+        <!--Education-->
+        <scene sceneID="EJN-8p-Ilj">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="l1S-4v-WMu" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Education" image="book" catalog="system" id="BNL-0p-nIu"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dvi-xc-lf6">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="emS-4B-vf7" kind="relationship" relationship="rootViewController" id="x81-6d-5y3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7SU-wL-yOc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="690.83969465648852" y="698.59154929577471"/>
+        </scene>
+        <!--Calendar-->
+        <scene sceneID="4Jm-jO-Hg6">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DhU-Oe-6vw" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Calendar" image="calendar" catalog="system" id="Mea-Qn-Ftf"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DLa-uG-Kpa">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="OGz-0Q-LHD" kind="relationship" relationship="rootViewController" id="97A-qd-g9C"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QlE-Fb-JAZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2139.6946564885498" y="698.59154929577471"/>
+        </scene>
+        <!--Insights-->
+        <scene sceneID="AHn-tB-sZN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7IB-17-o3G" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Insights" image="chart.bar" catalog="system" id="0Vd-ud-yLd"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="71c-Tt-3uu">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="pyd-ob-xfM" kind="relationship" relationship="rootViewController" id="kQ2-7s-fwj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Je-Fg-u6g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2877" y="699"/>
         </scene>
     </scenes>
     <resources>

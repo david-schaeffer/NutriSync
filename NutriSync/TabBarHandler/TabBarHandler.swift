@@ -12,6 +12,7 @@ class TabBarHandler: NSObject, UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         let vcIndex = tabBarController.viewControllers!.firstIndex(of: viewController)!
+        
         // if "Log selected" popUpView visible
         if vcIndex == 2 {
             // if popUpView is visible
@@ -49,20 +50,41 @@ class TabBarHandler: NSObject, UITabBarControllerDelegate {
     }
     
     @objc func logMood(_ sender: UIButton) {
-        if let parentStackView = sender.superview?.superview as? PopUpView {
-            parentStackView.removeFromSuperview()
+        if let tabBC = sender.window?.rootViewController as? UITabBarController {
+            popUpView?.removeFromSuperview()
+            popUpView = nil
+            
+            let currentTabIndex = tabBC.selectedIndex
+            
+            let logNavigationController = tabBC.viewControllers?[currentTabIndex] as? UINavigationController
+            let logMoodVC = LogMoodViewController()
+            logNavigationController?.pushViewController(logMoodVC, animated: true)
         }
     }
     
     @objc func logMeal(_ sender: UIButton) {
-        if let parentStackView = sender.superview?.superview as? PopUpView {
-            parentStackView.removeFromSuperview()
+        if let tabBC = sender.window?.rootViewController as? UITabBarController {
+            popUpView?.removeFromSuperview()
+            popUpView = nil
+            
+            let currentTabIndex = tabBC.selectedIndex
+            
+            let logNavigationController = tabBC.viewControllers?[currentTabIndex] as? UINavigationController
+            let logMealVC = LogMealViewController()
+            logNavigationController?.pushViewController(logMealVC, animated: true)
         }
     }
     
     @objc func logEvent(_ sender: UIButton) {
-        if let parentStackView = sender.superview?.superview as? PopUpView {
-            parentStackView.removeFromSuperview()
+        if let tabBC = sender.window?.rootViewController as? UITabBarController {
+            popUpView?.removeFromSuperview()
+            popUpView = nil
+            
+            let currentTabIndex = tabBC.selectedIndex
+            
+            let logNavigationController = tabBC.viewControllers?[currentTabIndex] as? UINavigationController
+            let logEventVC = LogEventViewController()
+            logNavigationController?.pushViewController(logEventVC, animated: true)
         }
     }
 }
