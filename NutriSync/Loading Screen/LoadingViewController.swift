@@ -8,14 +8,15 @@
 import UIKit
 
 class LoadingViewController: UIViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        // Create and add the LoadingView
+        let loadingView = LoadingView(frame: view.bounds)
+        loadingView.factLabel.text = "Omega-3 fatty acids found in fish are known to reduce symptoms of depression and anxiety."
+        view.addSubview(loadingView)
     }
-    
-
+}
     /*
     // MARK: - Navigation
 
@@ -26,4 +27,3 @@ class LoadingViewController: UIViewController {
     }
     */
 
-}
