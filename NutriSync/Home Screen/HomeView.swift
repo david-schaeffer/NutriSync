@@ -38,9 +38,9 @@ class HomeView: UIView {
         
         setupScrollView()
         setupWelcomeLabel()
-        setupFactLabel()
-        setupDailyProgressLabel()
-        setupMonthlyProgressLabel()
+        setupFactView()
+        setupDailyProgressView()
+        setupMonthlyProgressView()
         
         initConstraints()
     }
@@ -59,7 +59,7 @@ class HomeView: UIView {
         scrollView.addSubview(welcomeLabel)
     }
     
-    func setupFactLabel() {
+    func setupFactView() {
         factView = UIView()
         factView.layer.cornerRadius = 12
         factView.layer.masksToBounds = false
@@ -83,7 +83,7 @@ class HomeView: UIView {
         factView.addSubview(factText)
     }
     
-    func setupDailyProgressLabel() {
+    func setupDailyProgressView() {
         dailyProgressView = UIView()
         dailyProgressView.layer.cornerRadius = 12
         dailyProgressView.layer.masksToBounds = true
@@ -105,7 +105,7 @@ class HomeView: UIView {
         dailyProgressView.addSubview(dailyProgressText)
     }
     
-    func setupMonthlyProgressLabel() {
+    func setupMonthlyProgressView() {
         monthlyProgressView = UIView()
         monthlyProgressView.layer.cornerRadius = 12
         monthlyProgressView.layer.masksToBounds = true
