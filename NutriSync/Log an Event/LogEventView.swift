@@ -189,7 +189,7 @@ class LogEventView: UIView {
                 moodLabel.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: 16),
                 moodLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
 
-                moodScrollView.topAnchor.constraint(equalTo: moodLabel.bottomAnchor, constant: 8),
+                moodScrollView.topAnchor.constraint(equalTo: moodLabel.bottomAnchor, constant: 16),
                 moodScrollView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
                 moodScrollView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
                 moodScrollView.heightAnchor.constraint(equalToConstant: 44),
@@ -207,11 +207,11 @@ class LogEventView: UIView {
                 stressSlider.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
                 stressSlider.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
 
-                minLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-                minLabel.centerYAnchor.constraint(equalTo: stressSlider.centerYAnchor),
+                minLabel.leadingAnchor.constraint(equalTo: stressSlider.leadingAnchor),
+                minLabel.topAnchor.constraint(equalTo: stressSlider.bottomAnchor, constant: 4),
 
-                maxLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-                maxLabel.centerYAnchor.constraint(equalTo: stressSlider.centerYAnchor),
+                maxLabel.trailingAnchor.constraint(equalTo: stressSlider.trailingAnchor),
+                maxLabel.topAnchor.constraint(equalTo: stressSlider.bottomAnchor, constant: 4),
 
                 logButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16),
                 logButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
