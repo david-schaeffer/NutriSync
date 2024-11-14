@@ -12,6 +12,7 @@ class LogMealViewController: UIViewController {
     var logMealView: LogMealView!
     
     override func loadView() {
+        self.logMealView = LogMealView()
         view = logMealView
     }
 

@@ -19,7 +19,7 @@ class LogMealView: UIView {
     var moodLabel: UILabel!
     var stressLabel: UILabel!
 
-    var moodStackView: UIStackView!
+    var moodStackView: UIStackView?
     var moodScrollView: UIScrollView!
 
     var stressSlider: UISlider!
@@ -32,6 +32,7 @@ class LogMealView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
+        setupMoodScrollView()
         setupMealTextField()
         setupMoodLabel()
         setupMoodStackView()
@@ -41,7 +42,6 @@ class LogMealView: UIView {
         setupStressMaxLabel()
         setupEventTextField()
         setupLogButton()
-        setupMoodScrollView()
         initConstraints()
     }
     
@@ -87,33 +87,36 @@ class LogMealView: UIView {
         self.addSubview(stressLabel)
     }
     
-   
-    func setupMoodStackView() {
-        moodStackView = UIStackView()
-        moodStackView.axis = .horizontal
-        moodStackView.spacing = 12
-        moodStackView.translatesAutoresizingMaskIntoConstraints = false
-        moodScrollView.addSubview(moodStackView)
-        
-        let moods = ["Anger", "Fear", "Sadness", "Disgust", "Content", "Enjoyment"]
-        for mood in moods {
-            let button = UIButton()
-            button.setTitle(mood, for: .normal)
-            button.setTitleColor(.systemBlue, for: .normal)
-            button.titleLabel?.font = .systemFont(ofSize: 16)
-            button.layer.cornerRadius = 20
-            button.layer.borderWidth = 1
-            button.layer.borderColor = UIColor.systemGray.cgColor
-            moodStackView.addArrangedSubview(button)
-        }
-    }
-    
     func setupMoodScrollView() {
         moodScrollView = UIScrollView()
         moodScrollView.showsHorizontalScrollIndicator = true
         moodScrollView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(moodScrollView)
     }
+    
+    func setupMoodStackView() {
+        moodStackView = UIStackView()
+                guard let moodStackView = moodStackView else { return }
+                
+                moodStackView.axis = .horizontal
+                moodStackView.spacing = 12
+                moodStackView.translatesAutoresizingMaskIntoConstraints = false
+                moodScrollView.addSubview(moodStackView)
+                
+                let moods = ["Anger", "Fear", "Sadness", "Disgust", "Content", "Enjoyment"]
+                for mood in moods {
+                    let button = UIButton()
+                    button.setTitle(mood, for: .normal)
+                    button.setTitleColor(.systemBlue, for: .normal)
+                    button.titleLabel?.font = .systemFont(ofSize: 16)
+                    button.layer.cornerRadius = 20
+                    button.layer.borderWidth = 1
+                    button.layer.borderColor = UIColor.systemGray.cgColor
+                    moodStackView.addArrangedSubview(button)
+                }
+            }
+    
+
     
     func setupStressSlider() {
         stressSlider = UISlider()
@@ -170,11 +173,11 @@ class LogMealView: UIView {
             moodScrollView.heightAnchor.constraint(equalToConstant: 44),
             
             
-            moodStackView.topAnchor.constraint(equalTo: moodScrollView.topAnchor),
-            moodStackView.leadingAnchor.constraint(equalTo: moodScrollView.leadingAnchor),
-            moodStackView.trailingAnchor.constraint(equalTo: moodScrollView.trailingAnchor),
-            moodStackView.bottomAnchor.constraint(equalTo: moodScrollView.bottomAnchor),
-            moodStackView.heightAnchor.constraint(equalTo: moodScrollView.heightAnchor),
+            moodStackView!.topAnchor.constraint(equalTo: moodScrollView.topAnchor),
+            moodStackView!.leadingAnchor.constraint(equalTo: moodScrollView.leadingAnchor),
+            moodStackView!.trailingAnchor.constraint(equalTo: moodScrollView.trailingAnchor),
+            moodStackView!.bottomAnchor.constraint(equalTo: moodScrollView.bottomAnchor),
+            moodStackView!.heightAnchor.constraint(equalTo: moodScrollView.heightAnchor),
             
             stressLabel.topAnchor.constraint(equalTo: moodScrollView.bottomAnchor, constant: 24),
             stressLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
