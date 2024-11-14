@@ -63,13 +63,6 @@ class HomeView: UIView {
         factView = UIView()
         factView.layer.cornerRadius = 12
         factView.layer.masksToBounds = false
-        factView.layer.shadowColor = UIColor.black.cgColor
-        factView.layer.shadowOffset = CGSize(width: -1, height: 1)
-        factView.layer.shadowOpacity = 0.5
-        factView.layer.shadowRadius = 10
-        factView.layer.shadowPath = UIBezierPath(rect: factView.bounds).cgPath
-        factView.layer.shouldRasterize = true
-        factView.layer.rasterizationScale = UIScreen.main.scale
         factView.backgroundColor = UIColor.secondarySystemBackground
         factView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(factView)
@@ -94,8 +87,6 @@ class HomeView: UIView {
         dailyProgressView = UIView()
         dailyProgressView.layer.cornerRadius = 12
         dailyProgressView.layer.masksToBounds = true
-        dailyProgressView.layer.borderWidth = 1
-        dailyProgressView.layer.borderColor = UIColor.blue.cgColor
         dailyProgressView.backgroundColor = UIColor.secondarySystemBackground
         dailyProgressView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(dailyProgressView)
@@ -118,8 +109,6 @@ class HomeView: UIView {
         monthlyProgressView = UIView()
         monthlyProgressView.layer.cornerRadius = 12
         monthlyProgressView.layer.masksToBounds = true
-        monthlyProgressView.layer.borderWidth = 1
-        monthlyProgressView.layer.borderColor = UIColor.orange.cgColor
         monthlyProgressView.backgroundColor = UIColor.secondarySystemBackground
         monthlyProgressView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(monthlyProgressView)

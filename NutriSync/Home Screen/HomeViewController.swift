@@ -10,6 +10,7 @@ import UIKit
 class HomeViewController: UIViewController {
     
     var homeView: HomeView!
+    let tabBarHandler: UITabBarControllerDelegate = TabBarHandler()
     
     override func loadView() {
         self.homeView = HomeView()
@@ -18,6 +19,9 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tabBarController?.delegate = tabBarHandler
+        
         let profileButton = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle"), style: .plain, target: self, action: #selector (openProfile))
         navigationItem.rightBarButtonItem = profileButton
         
@@ -28,7 +32,9 @@ class HomeViewController: UIViewController {
     @objc func openCalendar() {
         let calendarVC = CalendarViewController()
         calendarVC.title = "Calendar"
-        navigationController?.pushViewController(calendarVC, animated: true)
+        if let tabBC = tabBarController {
+            tabBC.selectedIndex = 3 // Calendar tab
+        }
     }
     
     @objc func openProfile() {
