@@ -4,17 +4,21 @@
 //
 //  Created by Dana Abdo on 11/5/24.
 //
-
+/*
 import UIKit
 
 class InsightsView: UIView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
-}
+    // COMPONENTS
+    var scrollView: UIScrollView!
+    var InsightsLabel: UILabel!
+    var DataAnalysisLabel: UILabel!
+    var factView: UIView!
+    var factText: UILabel!
+    var dailyProgressView: UIView!
+    var dailyProgressLabel: UILabel!
+    var dailyProgressText: UILabel!
+    var monthlyProgressView: UIView!
+    var monthlyProgressLabel: UILabel!
+    var monthlyProgressCalendar: UICalendarView!
+*/
