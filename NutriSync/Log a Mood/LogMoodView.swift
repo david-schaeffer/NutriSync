@@ -157,20 +157,22 @@ class LogMoodView: UIView {
             stressLabel.topAnchor.constraint(equalTo: moodScrollView.bottomAnchor, constant: 24),
             stressLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             
-            minLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            minLabel.topAnchor.constraint(equalTo: stressLabel.bottomAnchor, constant: 16),
+            minLabel.leadingAnchor.constraint(equalTo: stressSlider.leadingAnchor),
+            minLabel.topAnchor.constraint(equalTo: stressSlider.bottomAnchor, constant: 4),
             
-            stressSlider.leadingAnchor.constraint(equalTo: minLabel.trailingAnchor, constant: 8),
-            stressSlider.centerYAnchor.constraint(equalTo: minLabel.centerYAnchor),
+            stressSlider.topAnchor.constraint(equalTo: stressLabel.bottomAnchor, constant: 16),
+            stressSlider.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            stressSlider.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             
-            maxLabel.leadingAnchor.constraint(equalTo: stressSlider.trailingAnchor, constant: 8),
-            maxLabel.centerYAnchor.constraint(equalTo: stressSlider.centerYAnchor),
-            maxLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            maxLabel.trailingAnchor.constraint(equalTo: stressSlider.trailingAnchor),
+            maxLabel.topAnchor.constraint(equalTo: stressSlider.bottomAnchor, constant: 4),
             
             logButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             logButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             logButton.heightAnchor.constraint(equalToConstant: 50),
             logButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16)
         ])
+
     }
 }
+
