@@ -7,37 +7,74 @@
 
 import UIKit
 
-class ArticleScrollView: UICollectionView {
-    var articles: [UIView] = [] // TODO: custom Article type?
+class ArticleScrollView: UIView {
+    var collectionView: UICollectionView!
+    var flowLayout: UICollectionViewFlowLayout!
+    var articles: [UIImage] = [] // TODO: custom Article type?
     
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//        setupView()
-//    }
-//    
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//    
-//    func setupView() {
-//        setupScrollView()
-//        setupArticles()
-//    }
-//    
-//    func setupScrollView() {
-//        scrollView = UIScrollView()
-//        scrollView.translatesAutoresizingMaskIntoConstraints = false
-//        self.addSubview(scrollView)
-//    }
-//    
-//    func setupArticles() {
-//        articles = []
-//        for idx in 0..<10 {
-//            let article = UILabel()
-//            article.text = "Article \(idx + 1)"
-//            article.font = .preferredFont(forTextStyle: .headline)
-//            article.numberOfLines = 0
-//            articles.append(article)
-//        }
-//    }
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupView() {
+        setupCollectionView()
+        
+        initConstraints()
+    }
+
+    private func setupCollectionView() {
+        flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.minimumInteritemSpacing = 10
+        flowLayout.minimumLineSpacing = 10
+        
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(ArticleCell.self, forCellWithReuseIdentifier: ArticleCell.identifier)
+        addSubview(collectionView)
+    }
+    
+    private func initConstraints() {
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: self.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+        ])
+    }
+    
+    func loadArticles(with articles: [UIImage]) {
+        self.articles = articles
+        collectionView.reloadData()
+    }
+}
+
+extension ArticleScrollView: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return articles.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ArticleCell.identifier, for: indexPath) as? ArticleCell else {
+            return UICollectionViewCell()
+        }
+        cell.configure(with: articles[indexPath.item])
+        return cell
+    }
+}
+
+extension ArticleScrollView: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellHeight = collectionView.bounds.height
+        let cellWidth = cellHeight * 1.2
+        return CGSize(width: cellWidth, height: cellHeight) // TODO: check sizing
+    }
 }
