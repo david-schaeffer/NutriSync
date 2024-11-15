@@ -6,12 +6,22 @@
 //
 
 import UIKit
-
+        
 class InsightsViewController: UIViewController {
+    
+    var insightsView: InsightsView!
+    
+    override func loadView() {
+        self.insightsView = InsightsView()
+        view = insightsView
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        
         // Do any additional setup after loading the view.
     }
     

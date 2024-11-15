@@ -53,7 +53,7 @@ class HomeView: UIView {
     
     func setupWelcomeLabel() {
         welcomeLabel = UILabel()
-        welcomeLabel.text = "Welcome, <User>!"
+        welcomeLabel.text = "Welcome, Dana!"
         welcomeLabel.font = UIFont.boldSystemFont(ofSize: 36)
         welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(welcomeLabel)

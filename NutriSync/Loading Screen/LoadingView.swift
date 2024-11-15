@@ -27,7 +27,7 @@ class LoadingView: UIView {
     func setupBrandLabel() {
         brandLabel = UILabel()
         brandLabel.text = "NutriSync"
-        brandLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        brandLabel.font = UIFont.boldSystemFont(ofSize: 12)
         brandLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(brandLabel)
     }
@@ -35,7 +35,7 @@ class LoadingView: UIView {
     func setupFactLabel() {
         factLabel = UILabel()
         factLabel.text = "Omega-3 fatty acids found in fish are known to reduce symptoms of depression and anxiety"
-        factLabel.font = UIFont.systemFont(ofSize: 16)
+        factLabel.font = UIFont.systemFont(ofSize: 24)
         factLabel.textAlignment = .center
         factLabel.numberOfLines = 0
         factLabel.translatesAutoresizingMaskIntoConstraints = false
