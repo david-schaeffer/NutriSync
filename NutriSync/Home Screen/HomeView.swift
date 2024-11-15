@@ -47,6 +47,7 @@ class HomeView: UIView {
     
     func setupScrollView() {
         scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(scrollView)
     }
