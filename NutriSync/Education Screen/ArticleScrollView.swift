@@ -10,7 +10,7 @@ import UIKit
 class ArticleScrollView: UIView {
     var collectionView: UICollectionView!
     var flowLayout: UICollectionViewFlowLayout!
-    var articles: [UIImage] = [] // TODO: custom Article type?
+    var articles: [ArticleThumbnail] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,8 +30,8 @@ class ArticleScrollView: UIView {
     private func setupCollectionView() {
         flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
-        flowLayout.minimumInteritemSpacing = 10
-        flowLayout.minimumLineSpacing = 10
+        flowLayout.minimumInteritemSpacing = 20
+        flowLayout.minimumLineSpacing = 20
         
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.showsHorizontalScrollIndicator = false
@@ -51,7 +51,7 @@ class ArticleScrollView: UIView {
         ])
     }
     
-    func loadArticles(with articles: [UIImage]) {
+    func loadArticles(with articles: [ArticleThumbnail]) {
         self.articles = articles
         collectionView.reloadData()
     }
@@ -67,6 +67,7 @@ extension ArticleScrollView: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         cell.configure(with: articles[indexPath.item])
+        cell.tag = indexPath.item
         return cell
     }
 }
@@ -74,7 +75,7 @@ extension ArticleScrollView: UICollectionViewDataSource {
 extension ArticleScrollView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellHeight = collectionView.bounds.height
-        let cellWidth = cellHeight * 1.2
-        return CGSize(width: cellWidth, height: cellHeight) // TODO: check sizing
+        let cellWidth = cellHeight
+        return CGSize(width: cellWidth, height: cellHeight)
     }
 }

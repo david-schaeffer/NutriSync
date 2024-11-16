@@ -11,35 +11,94 @@ class ArticleCell: UICollectionViewCell {
     static let identifier: String = "ArticleCell"
     
     var articleView: UIImageView!
+    var articleTitle: UILabel!
+    var gradientLayer: CAGradientLayer!
+    var articleId: String!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        articleView = UIImageView()
-        articleView.contentMode = .scaleAspectFill
-        articleView.backgroundColor = .lightGray
-        articleView.clipsToBounds = true
-        articleView.layer.cornerRadius = 20
-        articleView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(articleView)
+        setupGradientLayer()
+        setupArticleView()
+        setupArticleTitle()
         
         initConstraints()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        gradientLayer.frame = CGRect(
+            x: 0,
+            y: bounds.height / 2,
+            width: bounds.width,
+            height: bounds.height / 2
+        )
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func initConstraints() {
+    private func setupGradientLayer() {
+        gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [
+            UIColor.clear.cgColor,
+            UIColor.black.withAlphaComponent(0.6).cgColor
+        ]
+        gradientLayer.locations = [0.0, 1.0]
+    }
+    
+    private func setupArticleView() {
+        articleView = UIImageView()
+        articleView.contentMode = .scaleAspectFill
+        articleView.backgroundColor = .secondarySystemBackground
+        articleView.clipsToBounds = true
+        articleView.layer.cornerRadius = 10
+        articleView.layer.addSublayer(gradientLayer)
+        
+        // Support tapping
+        articleView.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        tapGesture.numberOfTapsRequired = 1
+        articleView.addGestureRecognizer(tapGesture)
+        
+        articleView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(articleView)
+    }
+    
+    private func setupArticleTitle() {
+        articleTitle = UILabel()
+        articleTitle.font = .boldSystemFont(ofSize: 16)
+        articleTitle.textColor = .white
+        articleTitle.numberOfLines = 2
+        articleTitle.lineBreakMode = .byTruncatingTail
+        articleTitle.clipsToBounds = true
+        
+        articleTitle.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(articleTitle)
+    }
+    
+    private func initConstraints() {
         NSLayoutConstraint.activate([
             articleView.topAnchor.constraint(equalTo: contentView.topAnchor),
             articleView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             articleView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             articleView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            
+            articleTitle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            articleTitle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            articleTitle.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
         ])
     }
     
-    func configure(with article: UIImage) {
-        articleView.image = article
+    @objc private func handleTap() {
+        print("Tapped tag: \(articleId!)")
+    }
+    
+    func configure(with article: ArticleThumbnail) {
+        articleView.image = article.backgroundImage
+        articleTitle.text = article.title
+        articleId = article.id
     }
 }
