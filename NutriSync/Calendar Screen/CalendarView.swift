@@ -30,7 +30,7 @@ class CalendarView: UIView {
     func setupCalendarLabel() {
         calendarLabel = UILabel()
         calendarLabel.text = "Calendar"
-        calendarLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        calendarLabel.font = UIFont.boldSystemFont(ofSize: 32)
         calendarLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(calendarLabel)
     }
@@ -50,10 +50,10 @@ class CalendarView: UIView {
 
     func initConstraints() {
         NSLayoutConstraint.activate([
-            calendarLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 16),
+            calendarLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
             calendarLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 20),
 
-            monthlyCalendarView.topAnchor.constraint(equalTo: calendarLabel.bottomAnchor, constant: 16),
+            monthlyCalendarView.topAnchor.constraint(equalTo: calendarLabel.bottomAnchor, constant: 20),
             monthlyCalendarView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             monthlyCalendarView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             monthlyCalendarView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -130),

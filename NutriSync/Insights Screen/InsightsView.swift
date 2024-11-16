@@ -27,8 +27,7 @@ class InsightsView: UIView {
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setupView()
+        fatalError("init(coder:) has not been implemented")
     }
     
     func setupView() {
@@ -59,13 +58,14 @@ class InsightsView: UIView {
         
         initConstraints()
     }
+    
     func setupScrollView() {
         scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(scrollView)
     }
     
-    func  setupInsightsLabel() {
+    func setupInsightsLabel() {
         insightsLabel = UILabel()
         insightsLabel.text = "Insights"
         insightsLabel.font = UIFont.boldSystemFont(ofSize: 32)
