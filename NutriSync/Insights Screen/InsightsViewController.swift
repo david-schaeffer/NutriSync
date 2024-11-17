@@ -11,6 +11,12 @@ class InsightsViewController: UIViewController {
     
     var insightsView: InsightsView!
     
+    let suggestedArticles: [ArticleThumbnail] = [
+        ArticleThumbnail(id: UUID().uuidString, title: "Article 1 with a long title to see what happens", backgroundImage: UIImage(systemName: "heart.fill")!),
+        ArticleThumbnail(id: UUID().uuidString, title: "Article 2", backgroundImage: UIImage(systemName: "person.fill")!),
+        ArticleThumbnail(id: UUID().uuidString, title: "Article 3", backgroundImage: UIImage(systemName: "book.fill")!),
+    ]
+    
     override func loadView() {
         self.insightsView = InsightsView()
         view = insightsView
@@ -20,20 +26,11 @@ class InsightsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-        
-        // Do any additional setup after loading the view.
+        loadArticles()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func loadArticles() {
+        insightsView.suggestedArticles.loadArticles(with: suggestedArticles)
     }
-    */
 
 }

@@ -12,14 +12,15 @@ class InsightsView: UIView {
     // COMPONENTS
     var scrollView: UIScrollView!
     var insightsLabel: UILabel!
-    var dataanalysisLabel: UILabel!
-    var comparisonLabel : UILabel!
+    var dataAnalysisLabel: UILabel!
+    var comparisonLabel: UILabel!
     var comparisonImage: UIImageView!
     var moodLabel: UILabel!
     var moodImage: UIImageView!
     var stressLabel: UILabel!
     var stressImage: UIImageView!
-    var suggestedarticlesLabel : UILabel!
+    var suggestedArticlesLabel: UILabel!
+    var suggestedArticles: ArticleScrollView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,23 +39,17 @@ class InsightsView: UIView {
         setupComparisonLabel()
         setupMoodLabel()
         setupStressLabel()
-        setupSuggestedArticlesLabel()
-        
-        // Load the images
-       // comparisonImage.image = UIImage(named: "combination")
-        //moodImage.image = UIImage(named: "Moodchart")
-       // stressImage.image = UIImage(named: "Stress")
+        setupSuggestedArticles()
         
         // Load the images, with a fallback system image to help debug
         comparisonImage.image = UIImage(named: "combination1") ?? UIImage(systemName: "exclamationmark.triangle")
         moodImage.image = UIImage(named: "Moodchart1") ?? UIImage(systemName: "exclamationmark.triangle")
         stressImage.image = UIImage(named: "Stress") ?? UIImage(systemName: "exclamationmark.triangle")
 
-            // Optional background colors to help debug
+        // Optional background colors to help debug
         comparisonImage.backgroundColor = .white
         moodImage.backgroundColor = .white
         stressImage.backgroundColor = .white
-
         
         initConstraints()
     }
@@ -72,17 +67,17 @@ class InsightsView: UIView {
         insightsLabel.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(insightsLabel)
         
-        dataanalysisLabel = UILabel()
-        dataanalysisLabel.text = "Data Analysis Based on the Last 7 Days"
-        dataanalysisLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        dataanalysisLabel.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(dataanalysisLabel)
+        dataAnalysisLabel = UILabel()
+        dataAnalysisLabel.text = "Data Analysis Based on the Last 7 Days"
+        dataAnalysisLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        dataAnalysisLabel.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(dataAnalysisLabel)
     }
     
     func setupComparisonLabel() {
         comparisonLabel = UILabel()
         comparisonLabel.text = "Food vs Stress Levels Graph"
-        comparisonLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        comparisonLabel.font = UIFont.boldSystemFont(ofSize: 18)
         comparisonLabel.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(comparisonLabel)
         
@@ -98,7 +93,7 @@ class InsightsView: UIView {
     func setupMoodLabel() {
         moodLabel = UILabel()
         moodLabel.text = "Mood breakdown over the last 7 days"
-        moodLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        moodLabel.font = UIFont.boldSystemFont(ofSize: 18)
         moodLabel.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(moodLabel)
         
@@ -114,7 +109,7 @@ class InsightsView: UIView {
     func setupStressLabel() {
         stressLabel = UILabel()
         stressLabel.text = "Stress Trends over the last 7 days"
-        stressLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        stressLabel.font = UIFont.boldSystemFont(ofSize: 18)
         stressLabel.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(stressLabel)
         
@@ -127,13 +122,18 @@ class InsightsView: UIView {
         scrollView.addSubview(stressImage)
     }
     
-    func setupSuggestedArticlesLabel() {
-        suggestedarticlesLabel = UILabel()
-        suggestedarticlesLabel.text = "Suggested Articles for you"
-        suggestedarticlesLabel.font = UIFont.boldSystemFont(ofSize: 14)
-        suggestedarticlesLabel.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(suggestedarticlesLabel)
+    func setupSuggestedArticles() {
+        suggestedArticlesLabel = UILabel()
+        suggestedArticlesLabel.text = "Suggested Articles For You"
+        suggestedArticlesLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        suggestedArticlesLabel.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(suggestedArticlesLabel)
+        
+        suggestedArticles = ArticleScrollView()
+        suggestedArticles.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(suggestedArticles)
     }
+    
     func initConstraints() {
         NSLayoutConstraint.activate([
             // ScrollView Constraints
@@ -147,11 +147,11 @@ class InsightsView: UIView {
             insightsLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
             
             // Data Analysis Label Constraints
-            dataanalysisLabel.topAnchor.constraint(equalTo: insightsLabel.bottomAnchor, constant: 10),
-            dataanalysisLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+            dataAnalysisLabel.topAnchor.constraint(equalTo: insightsLabel.bottomAnchor, constant: 10),
+            dataAnalysisLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
             
             // Comparison Label Constraints
-            comparisonLabel.topAnchor.constraint(equalTo: dataanalysisLabel.bottomAnchor, constant: 30),
+            comparisonLabel.topAnchor.constraint(equalTo: dataAnalysisLabel.bottomAnchor, constant: 30),
             comparisonLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
             
             // Comparison Image Constraints (fit to screen width)
@@ -181,13 +181,15 @@ class InsightsView: UIView {
             stressImage.heightAnchor.constraint(equalToConstant: 120),
             
             // Suggested Articles Label Constraints
-            suggestedarticlesLabel.topAnchor.constraint(equalTo: stressImage.bottomAnchor, constant: 30),
-            suggestedarticlesLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
-            suggestedarticlesLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20)
+            suggestedArticlesLabel.topAnchor.constraint(equalTo: stressImage.bottomAnchor, constant: 30),
+            suggestedArticlesLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+            
+            suggestedArticles.topAnchor.constraint(equalTo: suggestedArticlesLabel.bottomAnchor, constant: 20),
+            suggestedArticles.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+            suggestedArticles.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20),
+            suggestedArticles.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20),
+            suggestedArticles.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -40),
+            suggestedArticles.heightAnchor.constraint(equalToConstant: 200)
         ])
     }
-
-    }
-
-    
-
+}
