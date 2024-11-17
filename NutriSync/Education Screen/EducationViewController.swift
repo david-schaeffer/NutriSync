@@ -43,7 +43,7 @@ class EducationViewController: UIViewController {
         loadArticles()
     }
     
-    func loadArticles() {
+    private func loadArticles() {
         educationView.todaysArticles.loadArticles(with: todaysArticles)
         educationView.sadArticles.loadArticles(with: sadArticles)
         educationView.angryArticles.loadArticles(with: angryArticles)
