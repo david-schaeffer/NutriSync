@@ -63,7 +63,7 @@ class CalendarView: UIView {
     func presentHalfModal(for date: Date) {
         let dayVC = DayViewController()
         dayVC.modalPresentationStyle = .pageSheet
-        dayVC.selectedDate = date // Pass the selected date to DayViewController
+        dayVC.selectedDate = date
 
         if let sheet = dayVC.sheetPresentationController {
             sheet.detents = [.medium()]
@@ -74,12 +74,14 @@ class CalendarView: UIView {
     }
 }
 
-// MARK: - UICalendarSelectionSingleDateDelegate
-
 extension CalendarView: UICalendarSelectionSingleDateDelegate {
     func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
         guard let dateComponents = dateComponents,
               let selectedDate = Calendar.current.date(from: dateComponents) else { return }
+        
+        if selectedDate > Date() {
+            return
+        }
         
         presentHalfModal(for: selectedDate)
     }
