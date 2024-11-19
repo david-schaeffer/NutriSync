@@ -18,7 +18,6 @@ class LogMealViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Log a Meal"
 
     }
 }
