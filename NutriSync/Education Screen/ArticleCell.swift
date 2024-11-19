@@ -96,8 +96,20 @@ class ArticleCell: UICollectionViewCell {
         print("Tapped tag: \(articleId!)")
     }
     
-    func configure(with article: ArticleThumbnail) {
-        articleView.image = article.backgroundImage
+    func configure(with article: Article) {
+        if let backgroundImageUrl: URL = article.backgroundImage?.url {
+            URLSession.shared.dataTask(with: backgroundImageUrl) { data, _, _ in
+                guard let imageData = data else { return }
+                
+                DispatchQueue.main.async {
+                    self.articleView.image = UIImage(data: imageData)
+                }
+            }.resume()
+        } else {
+            articleView.image = UIImage(systemName: "exclamationmark.triangle") // TODO: replace with NutriSync icon
+        }
+        
+//        articleView.image = article.backgroundImg?.urlString
         articleTitle.text = article.title
         articleId = article.id
     }

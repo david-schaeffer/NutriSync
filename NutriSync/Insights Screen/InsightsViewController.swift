@@ -30,7 +30,7 @@ class InsightsViewController: UIViewController {
     }
     
     private func loadArticles() {
-        insightsView.suggestedArticles.loadArticles(with: suggestedArticles)
+//        insightsView.suggestedArticles.loadArticles(with: suggestedArticles)
     }
 
 }

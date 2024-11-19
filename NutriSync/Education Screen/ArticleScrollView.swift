@@ -10,7 +10,8 @@ import UIKit
 class ArticleScrollView: UIView {
     var collectionView: UICollectionView!
     var flowLayout: UICollectionViewFlowLayout!
-    var articles: [ArticleThumbnail] = []
+    var compositionalLayout: UICollectionViewCompositionalLayout!
+    var articles: [Article] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,12 +34,28 @@ class ArticleScrollView: UIView {
         flowLayout.minimumInteritemSpacing = 20
         flowLayout.minimumLineSpacing = 20
         
+//        let inset: CGFloat = 5
+//        
+//        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalHeight(1))
+//        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+//        item.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset)
+//        
+//        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+//        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+//        
+//        let section = NSCollectionLayoutSection(group: group)
+//        section.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset)
+//        compositionalLayout = UICollectionViewCompositionalLayout(section: section)
+        
+//        compositionalLayout = UICollectionViewCompositionalLayout(sectionProvider: <#T##UICollectionViewCompositionalLayoutSectionProvider##UICollectionViewCompositionalLayoutSectionProvider##(Int, any NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection?#>)
+        
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(ArticleCell.self, forCellWithReuseIdentifier: ArticleCell.identifier)
+//        collectionView.register(ArticleHeaderView.self, forSupplementaryViewOfKind: "header", withReuseIdentifier: ArticleHeaderView.identifier)
         addSubview(collectionView)
     }
     
@@ -51,13 +68,21 @@ class ArticleScrollView: UIView {
         ])
     }
     
-    func loadArticles(with articles: [ArticleThumbnail]) {
+    func loadArticles(with articles: [Article]) {
         self.articles = articles
         collectionView.reloadData()
     }
 }
 
 extension ArticleScrollView: UICollectionViewDataSource {
+//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+//        guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ArticleHeaderView", for: indexPath) as? ArticleHeaderView else {
+//            return ArticleHeaderView()
+//        }
+//        
+//        
+//    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return articles.count
     }
@@ -67,7 +92,6 @@ extension ArticleScrollView: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         cell.configure(with: articles[indexPath.item])
-        cell.tag = indexPath.item
         return cell
     }
 }

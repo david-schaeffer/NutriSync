@@ -6,6 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		4C3EB25EC8FC6CDDAF8D3922 /* Pods_NutriSyncTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E50C4AEBDF6ED4C3606F478 /* Pods_NutriSyncTests.framework */; };
+		5719D9DE55B66F4D95CE3A99 /* Pods_NutriSync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFDC72EF1EE460DF46ABC226 /* Pods_NutriSync.framework */; };
+		84AAE2949FE0B299EF14FB45 /* Pods_NutriSync_NutriSyncUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20D844DB4AEC6882F6D31422 /* Pods_NutriSync_NutriSyncUITests.framework */; };
+		8B0381C02CEA90A300BF9E74 /* APIKeys.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 8B0381BF2CEA90A300BF9E74 /* APIKeys.xcconfig */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		8B0AC8942CD52E6B00B84C3D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,9 +31,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		17F8D67ABB08B64EB54049BC /* Pods-NutriSync.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NutriSync.debug.xcconfig"; path = "Target Support Files/Pods-NutriSync/Pods-NutriSync.debug.xcconfig"; sourceTree = "<group>"; };
+		20D844DB4AEC6882F6D31422 /* Pods_NutriSync_NutriSyncUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NutriSync_NutriSyncUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		52F44E557BB2454076EF60E5 /* Pods-NutriSync-NutriSyncUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NutriSync-NutriSyncUITests.debug.xcconfig"; path = "Target Support Files/Pods-NutriSync-NutriSyncUITests/Pods-NutriSync-NutriSyncUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		5E50C4AEBDF6ED4C3606F478 /* Pods_NutriSyncTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NutriSyncTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE769EE8C152A8022D7EDDF /* Pods-NutriSync.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NutriSync.release.xcconfig"; path = "Target Support Files/Pods-NutriSync/Pods-NutriSync.release.xcconfig"; sourceTree = "<group>"; };
+		753F889D78CDFB9E0EFD6FFB /* Pods-NutriSyncTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NutriSyncTests.debug.xcconfig"; path = "Target Support Files/Pods-NutriSyncTests/Pods-NutriSyncTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8B0381BF2CEA90A300BF9E74 /* APIKeys.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = APIKeys.xcconfig; sourceTree = "<group>"; };
 		8B0AC87D2CD52E6A00B84C3D /* NutriSync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NutriSync.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B0AC8932CD52E6B00B84C3D /* NutriSyncTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NutriSyncTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B0AC89D2CD52E6B00B84C3D /* NutriSyncUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NutriSyncUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		97356676E3B7497281950D58 /* Pods-NutriSync-NutriSyncUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NutriSync-NutriSyncUITests.release.xcconfig"; path = "Target Support Files/Pods-NutriSync-NutriSyncUITests/Pods-NutriSync-NutriSyncUITests.release.xcconfig"; sourceTree = "<group>"; };
+		EFDC72EF1EE460DF46ABC226 /* Pods_NutriSync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NutriSync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F94EC01F6F3DA5975A216643 /* Pods-NutriSyncTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NutriSyncTests.release.xcconfig"; path = "Target Support Files/Pods-NutriSyncTests/Pods-NutriSyncTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -65,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5719D9DE55B66F4D95CE3A99 /* Pods_NutriSync.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C3EB25EC8FC6CDDAF8D3922 /* Pods_NutriSyncTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,19 +98,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84AAE2949FE0B299EF14FB45 /* Pods_NutriSync_NutriSyncUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		574B2A98415C91519CB59182 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				17F8D67ABB08B64EB54049BC /* Pods-NutriSync.debug.xcconfig */,
+				5FE769EE8C152A8022D7EDDF /* Pods-NutriSync.release.xcconfig */,
+				52F44E557BB2454076EF60E5 /* Pods-NutriSync-NutriSyncUITests.debug.xcconfig */,
+				97356676E3B7497281950D58 /* Pods-NutriSync-NutriSyncUITests.release.xcconfig */,
+				753F889D78CDFB9E0EFD6FFB /* Pods-NutriSyncTests.debug.xcconfig */,
+				F94EC01F6F3DA5975A216643 /* Pods-NutriSyncTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		8B0AC8742CD52E6A00B84C3D = {
 			isa = PBXGroup;
 			children = (
+				8B0381BF2CEA90A300BF9E74 /* APIKeys.xcconfig */,
 				8B0AC87F2CD52E6A00B84C3D /* NutriSync */,
 				8B0AC8962CD52E6B00B84C3D /* NutriSyncTests */,
 				8B0AC8A02CD52E6B00B84C3D /* NutriSyncUITests */,
 				8B0AC87E2CD52E6A00B84C3D /* Products */,
+				574B2A98415C91519CB59182 /* Pods */,
+				C843AE70EB6A77322C510E59 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +141,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		C843AE70EB6A77322C510E59 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EFDC72EF1EE460DF46ABC226 /* Pods_NutriSync.framework */,
+				20D844DB4AEC6882F6D31422 /* Pods_NutriSync_NutriSyncUITests.framework */,
+				5E50C4AEBDF6ED4C3606F478 /* Pods_NutriSyncTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -112,9 +158,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8B0AC8A62CD52E6B00B84C3D /* Build configuration list for PBXNativeTarget "NutriSync" */;
 			buildPhases = (
+				93657308BB8BF45A5A7CEACE /* [CP] Check Pods Manifest.lock */,
 				8B0AC8792CD52E6A00B84C3D /* Sources */,
 				8B0AC87A2CD52E6A00B84C3D /* Frameworks */,
 				8B0AC87B2CD52E6A00B84C3D /* Resources */,
+				A00A54611F8E7963442FC254 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -124,8 +172,6 @@
 				8B0AC87F2CD52E6A00B84C3D /* NutriSync */,
 			);
 			name = NutriSync;
-			packageProductDependencies = (
-			);
 			productName = NutriSync;
 			productReference = 8B0AC87D2CD52E6A00B84C3D /* NutriSync.app */;
 			productType = "com.apple.product-type.application";
@@ -134,6 +180,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8B0AC8AB2CD52E6B00B84C3D /* Build configuration list for PBXNativeTarget "NutriSyncTests" */;
 			buildPhases = (
+				8725FDA54B109DFF5A97785E /* [CP] Check Pods Manifest.lock */,
 				8B0AC88F2CD52E6B00B84C3D /* Sources */,
 				8B0AC8902CD52E6B00B84C3D /* Frameworks */,
 				8B0AC8912CD52E6B00B84C3D /* Resources */,
@@ -147,8 +194,6 @@
 				8B0AC8962CD52E6B00B84C3D /* NutriSyncTests */,
 			);
 			name = NutriSyncTests;
-			packageProductDependencies = (
-			);
 			productName = NutriSyncTests;
 			productReference = 8B0AC8932CD52E6B00B84C3D /* NutriSyncTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -157,9 +202,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8B0AC8AE2CD52E6B00B84C3D /* Build configuration list for PBXNativeTarget "NutriSyncUITests" */;
 			buildPhases = (
+				AD83066D069E3443E6D9E977 /* [CP] Check Pods Manifest.lock */,
 				8B0AC8992CD52E6B00B84C3D /* Sources */,
 				8B0AC89A2CD52E6B00B84C3D /* Frameworks */,
 				8B0AC89B2CD52E6B00B84C3D /* Resources */,
+				1E46FBC0B6A3D468853BEA2B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -170,8 +217,6 @@
 				8B0AC8A02CD52E6B00B84C3D /* NutriSyncUITests */,
 			);
 			name = NutriSyncUITests;
-			packageProductDependencies = (
-			);
 			productName = NutriSyncUITests;
 			productReference = 8B0AC89D2CD52E6B00B84C3D /* NutriSyncUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -225,6 +270,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B0381C02CEA90A300BF9E74 /* APIKeys.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +289,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1E46FBC0B6A3D468853BEA2B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NutriSync-NutriSyncUITests/Pods-NutriSync-NutriSyncUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NutriSync-NutriSyncUITests/Pods-NutriSync-NutriSyncUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NutriSync-NutriSyncUITests/Pods-NutriSync-NutriSyncUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8725FDA54B109DFF5A97785E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NutriSyncTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		93657308BB8BF45A5A7CEACE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NutriSync-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A00A54611F8E7963442FC254 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NutriSync/Pods-NutriSync-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NutriSync/Pods-NutriSync-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NutriSync/Pods-NutriSync-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AD83066D069E3443E6D9E977 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NutriSync-NutriSyncUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8B0AC8792CD52E6A00B84C3D /* Sources */ = {
@@ -284,12 +433,14 @@
 /* Begin XCBuildConfiguration section */
 		8B0AC8A72CD52E6B00B84C3D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 17F8D67ABB08B64EB54049BC /* Pods-NutriSync.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3L56GRV7HK;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NutriSync/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -313,12 +464,14 @@
 		};
 		8B0AC8A82CD52E6B00B84C3D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 17F8D67ABB08B64EB54049BC /* Pods-NutriSync.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3L56GRV7HK;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NutriSync/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -342,6 +495,7 @@
 		};
 		8B0AC8A92CD52E6B00B84C3D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B0381BF2CEA90A300BF9E74 /* APIKeys.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -377,7 +531,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -405,6 +559,7 @@
 		};
 		8B0AC8AA2CD52E6B00B84C3D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B0381BF2CEA90A300BF9E74 /* APIKeys.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -440,7 +595,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -461,6 +616,7 @@
 		};
 		8B0AC8AC2CD52E6B00B84C3D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 753F889D78CDFB9E0EFD6FFB /* Pods-NutriSyncTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -480,6 +636,7 @@
 		};
 		8B0AC8AD2CD52E6B00B84C3D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F94EC01F6F3DA5975A216643 /* Pods-NutriSyncTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -499,6 +656,7 @@
 		};
 		8B0AC8AF2CD52E6B00B84C3D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52F44E557BB2454076EF60E5 /* Pods-NutriSync-NutriSyncUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -516,6 +674,7 @@
 		};
 		8B0AC8B02CD52E6B00B84C3D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97356676E3B7497281950D58 /* Pods-NutriSync-NutriSyncUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

@@ -11,7 +11,7 @@ class EducationView: UIView {
     var scrollView: UIScrollView!
     var educationLabel: UILabel!
     var todayLabel: UILabel!
-    var todaysArticles: ArticleScrollView!
+    var featuredArticles: ArticleScrollView!
     var sadLabel: UILabel!
     var sadArticles: ArticleScrollView!
     var angryLabel: UILabel!
@@ -51,21 +51,21 @@ class EducationView: UIView {
     }
     
     private func setupArticleScrollViews() {
-        setupTodaysArticles()
+        setupFeaturedArticles()
         setupSadArticles()
         setupAngryArticles()
     }
     
-    private func setupTodaysArticles() {
+    private func setupFeaturedArticles() {
         todayLabel = UILabel()
         todayLabel.text = "Today's Articles"
         todayLabel.font = UIFont.boldSystemFont(ofSize: 18)
         todayLabel.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(todayLabel)
         
-        todaysArticles = ArticleScrollView()
-        todaysArticles.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(todaysArticles)
+        featuredArticles = ArticleScrollView()
+        featuredArticles.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(featuredArticles)
     }
     
     private func setupSadArticles() {
@@ -105,13 +105,13 @@ class EducationView: UIView {
             todayLabel.topAnchor.constraint(equalTo: educationLabel.bottomAnchor, constant: 20),
             todayLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
             
-            todaysArticles.topAnchor.constraint(equalTo: todayLabel.bottomAnchor, constant: 20),
-            todaysArticles.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
-            todaysArticles.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20),
-            todaysArticles.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -40),
-            todaysArticles.heightAnchor.constraint(equalToConstant: 200),
+            featuredArticles.topAnchor.constraint(equalTo: todayLabel.bottomAnchor, constant: 20),
+            featuredArticles.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+            featuredArticles.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20),
+            featuredArticles.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -40),
+            featuredArticles.heightAnchor.constraint(equalToConstant: 200),
             
-            sadLabel.topAnchor.constraint(equalTo: todaysArticles.bottomAnchor, constant: 20),
+            sadLabel.topAnchor.constraint(equalTo: featuredArticles.bottomAnchor, constant: 20),
             sadLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
             
             sadArticles.topAnchor.constraint(equalTo: sadLabel.bottomAnchor, constant: 20),
