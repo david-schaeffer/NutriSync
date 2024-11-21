@@ -19,7 +19,6 @@ class InsightsView: UIView {
     var moodImage: UIImageView!
     var stressLabel: UILabel!
     var stressImage: UIImageView!
-    var suggestedArticlesLabel: UILabel!
     var suggestedArticles: ArticleScrollView!
     
     override init(frame: CGRect) {
@@ -123,12 +122,6 @@ class InsightsView: UIView {
     }
     
     func setupSuggestedArticles() {
-        suggestedArticlesLabel = UILabel()
-        suggestedArticlesLabel.text = "Suggested Articles For You"
-        suggestedArticlesLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        suggestedArticlesLabel.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(suggestedArticlesLabel)
-        
         suggestedArticles = ArticleScrollView()
         suggestedArticles.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(suggestedArticles)
@@ -180,16 +173,12 @@ class InsightsView: UIView {
             stressImage.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             stressImage.heightAnchor.constraint(equalToConstant: 120),
             
-            // Suggested Articles Label Constraints
-            suggestedArticlesLabel.topAnchor.constraint(equalTo: stressImage.bottomAnchor, constant: 30),
-            suggestedArticlesLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
-            
-            suggestedArticles.topAnchor.constraint(equalTo: suggestedArticlesLabel.bottomAnchor, constant: 20),
+            suggestedArticles.topAnchor.constraint(equalTo: stressImage.bottomAnchor, constant: 20),
             suggestedArticles.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
             suggestedArticles.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20),
             suggestedArticles.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20),
             suggestedArticles.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -40),
-            suggestedArticles.heightAnchor.constraint(equalToConstant: 200)
+            suggestedArticles.heightAnchor.constraint(greaterThanOrEqualToConstant: 300)
         ])
     }
 }

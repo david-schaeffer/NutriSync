@@ -5,7 +5,7 @@ class DayViewController: UIViewController {
     // UI Components
     var dateLabel: UILabel!
     var logLabel: UILabel!
-    var logTextBox: UILabel!
+    var logTextBox: UITextView!
     var moodLabel: UILabel!
     var stressLabel: UILabel!
     var stressSlider: UISlider!
@@ -28,25 +28,23 @@ class DayViewController: UIViewController {
         view.layer.cornerRadius = 12
         view.clipsToBounds = true
         
-        // Date Label
         dateLabel = UILabel()
         dateLabel.font = UIFont.boldSystemFont(ofSize: 20)
         dateLabel.textAlignment = .center
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(dateLabel)
         
-        // Mood Label
         logLabel = UILabel()
         logLabel.text = "Log"
         logLabel.font = UIFont.systemFont(ofSize: 16)
         logLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(logLabel)
         
-        // Log Label
-        logTextBox = UILabel()
+        logTextBox = UITextView()
         logTextBox.text = "Today, I ate oatmeal with frozen berries for brunch."
         logTextBox.font = UIFont.systemFont(ofSize: 16)
-        logTextBox.numberOfLines = 0
+        logTextBox.isEditable = false
+        logTextBox.isScrollEnabled = true
         logTextBox.layer.borderColor = UIColor.lightGray.cgColor
         logTextBox.layer.borderWidth = 1
         logTextBox.layer.cornerRadius = 8
@@ -54,22 +52,19 @@ class DayViewController: UIViewController {
         logTextBox.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(logTextBox)
         
-        // Mood Label
         moodLabel = UILabel()
         moodLabel.text = "Mood"
         moodLabel.font = UIFont.systemFont(ofSize: 16)
         moodLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(moodLabel)
         
-        // Create Mood StackView
         moodStack = UIStackView()
         moodStack.axis = .horizontal
         moodStack.alignment = .center
         moodStack.distribution = .fillEqually
-        moodStack.spacing = 12 // Adjust spacing between labels
+        moodStack.spacing = 12
         moodStack.translatesAutoresizingMaskIntoConstraints = false
 
-        // Add Mood Labels to StackView
         for mood in moodOptions {
             let moodLabel = UILabel()
             moodLabel.text = mood
@@ -81,9 +76,7 @@ class DayViewController: UIViewController {
             moodLabel.layer.cornerRadius = 20
             moodLabel.clipsToBounds = true
             moodLabel.backgroundColor = .white
-//            moodLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
             
-            // Add padding around the text
             moodLabel.translatesAutoresizingMaskIntoConstraints = false
             moodLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
             moodLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 80).isActive = true
@@ -92,14 +85,13 @@ class DayViewController: UIViewController {
         }
         view.addSubview(moodStack)
         
-        // Stress Label
+
         stressLabel = UILabel()
         stressLabel.text = "Stress"
         stressLabel.font = UIFont.systemFont(ofSize: 16)
         stressLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stressLabel)
         
-        // Stress Slider
         stressSlider = UISlider()
         stressSlider.minimumValue = 1
         stressSlider.maximumValue = 10

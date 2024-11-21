@@ -114,14 +114,4 @@ class PopUpView: UIView {
             logEventButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20)
         ])
     }
-    
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        let touch = touches.first
-//        guard let location = touch?.location(in: self) else { return }
-//        if !self.frame.contains(location) {
-//            print("Tapped outside the view")
-//        } else {
-//            print("Tapped inside the view")
-//        }
-//    }
 }

@@ -1,0 +1,6 @@
+framework module Pods_NutriSyncTests {
+  umbrella header "Pods-NutriSyncTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

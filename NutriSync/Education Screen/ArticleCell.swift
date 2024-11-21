@@ -57,12 +57,6 @@ class ArticleCell: UICollectionViewCell {
         articleView.layer.cornerRadius = 10
         articleView.layer.addSublayer(gradientLayer)
         
-        // Support tapping
-        articleView.isUserInteractionEnabled = true
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        tapGesture.numberOfTapsRequired = 1
-        articleView.addGestureRecognizer(tapGesture)
-        
         articleView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(articleView)
     }
@@ -92,12 +86,20 @@ class ArticleCell: UICollectionViewCell {
         ])
     }
     
-    @objc private func handleTap() {
-        print("Tapped tag: \(articleId!)")
-    }
-    
-    func configure(with article: ArticleThumbnail) {
-        articleView.image = article.backgroundImage
+    func configure(with article: Article) {
+        if let thumbnailUrl: URL = article.thumbnail?.url {
+            URLSession.shared.dataTask(with: thumbnailUrl) { data, _, _ in
+                guard let imageData = data else { return }
+                
+                DispatchQueue.main.async {
+                    self.articleView.image = UIImage(data: imageData)
+                }
+            }.resume()
+        } else {
+            articleView.image = UIImage(systemName: "exclamationmark.triangle") // TODO: replace with NutriSync icon
+        }
+        
+//        articleView.image = article.backgroundImg?.urlString
         articleTitle.text = article.title
         articleId = article.id
     }

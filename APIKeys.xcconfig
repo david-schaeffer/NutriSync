@@ -7,3 +7,6 @@
 
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
+
+CONTENTFUL_SPACE_ID = witgqvnqz1qj
+CONTENTFUL_ACCESS_TOKEN = MgdyANQ9pw1kkrYoO_CSKSJMrT0ZJkAqz2Tq2IObAXc

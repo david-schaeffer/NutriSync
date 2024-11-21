@@ -28,6 +28,10 @@ class LogMoodView: UIView {
         initConstraints()
     }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     func setupLogMoodLabel() {
         logMoodLabel = UILabel()
@@ -40,7 +44,7 @@ class LogMoodView: UIView {
     func setupMoodLabel() {
         moodLabel = UILabel()
         moodLabel.text = "Mood"
-        moodLabel.font = .boldSystemFont(ofSize: 17)
+        moodLabel.font = .boldSystemFont(ofSize: 16)
         moodLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(moodLabel)
     }
@@ -91,7 +95,7 @@ class LogMoodView: UIView {
     func setupStressLabel() {
         stressLabel = UILabel()
         stressLabel.text = "Stress"
-        stressLabel.font = .boldSystemFont(ofSize: 17)
+        stressLabel.font = .boldSystemFont(ofSize: 16)
         stressLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(stressLabel)
     }
@@ -129,10 +133,6 @@ class LogMoodView: UIView {
         logButton.layer.cornerRadius = 25
         logButton.translatesAutoresizingMaskIntoConstraints = false
         addSubview(logButton)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     func initConstraints() {
