@@ -39,7 +39,7 @@ class ProfileView: UIView {
     func setupProfileLabel() {
         profileLabel = UILabel()
         profileLabel.text = "Profile"
-        profileLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        profileLabel.font = UIFont.boldSystemFont(ofSize: 32)
         profileLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(profileLabel)
     }
@@ -148,9 +148,9 @@ class ProfileView: UIView {
             buttonSeparator.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
             buttonSeparator.heightAnchor.constraint(equalToConstant: 1),
             
-            changePasswordButton.topAnchor.constraint(equalTo: changeUsernameEmailButton.bottomAnchor, constant: 16),
-            changePasswordButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            changePasswordButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
+            changePasswordButton.topAnchor.constraint(equalTo: changeUsernameEmailButton.bottomAnchor, constant: 20),
+            changePasswordButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            changePasswordButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
         ])
     }
 }

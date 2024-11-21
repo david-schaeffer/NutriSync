@@ -34,8 +34,6 @@ class ArticleViewController: UIViewController {
         fetchArticle(articleId: self.articleId) { [weak self] article in
             guard let self = self, let article = article else { return }
             
-            print(article)
-            
             // Article title
             articleView.articleTitleLabel.text = article.title
             

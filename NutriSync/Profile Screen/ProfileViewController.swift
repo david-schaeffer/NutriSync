@@ -9,15 +9,14 @@ import UIKit
 import PhotosUI
 
 class ProfileViewController: UIViewController {
-    let profileScreen = ProfileView()
-    var pickedImage:UIImage?
+    private var profileScreen: ProfileView!
+    private var pickedImage: UIImage?
 
-    var delegate:HomeViewController!
-    
+    var delegate: HomeViewController!
     
     override func loadView() {
+        profileScreen = ProfileView()
         view = profileScreen
-        
     }
 
     override func viewDidLoad() {
@@ -26,42 +25,40 @@ class ProfileViewController: UIViewController {
         profileScreen.editProfilePictureButton.menu = getMenuImagePicker()
     }
     
-    
-    func getMenuImagePicker() -> UIMenu{
-            let menuItems = [
-                UIAction(title: "Camera",handler: {(_) in
-                    self.pickUsingCamera()
-                }),
-                UIAction(title: "Gallery",handler: {(_) in
-                    self.pickPhotoFromGallery()
-                })
-            ]
-            
-            return UIMenu(title: "Select source", children: menuItems)
-        }
+    private func getMenuImagePicker() -> UIMenu {
+        let menuItems = [
+            UIAction(title: "Camera",handler: {(_) in
+                self.pickUsingCamera()
+            }),
+            UIAction(title: "Gallery",handler: {(_) in
+                self.pickPhotoFromGallery()
+            })
+        ]
         
-    func pickPhotoFromGallery(){
-            var configuration = PHPickerConfiguration()
-            configuration.filter = PHPickerFilter.any(of: [.images])
-            configuration.selectionLimit = 1
-            
-            let photoPicker = PHPickerViewController(configuration: configuration)
-            
-            photoPicker.delegate = self
-            present(photoPicker, animated: true, completion: nil)
-        }
-    
-    func pickUsingCamera(){
-            let cameraController = UIImagePickerController()
-            cameraController.sourceType = .camera
-            cameraController.allowsEditing = true
-            cameraController.delegate = self
-            present(cameraController, animated: true)
-        }
+        return UIMenu(title: "Select source", children: menuItems)
+    }
         
-
+    private func pickPhotoFromGallery() {
+        var configuration = PHPickerConfiguration()
+        configuration.filter = PHPickerFilter.any(of: [.images])
+        configuration.selectionLimit = 1
+        
+        let photoPicker = PHPickerViewController(configuration: configuration)
+        
+        photoPicker.delegate = self
+        present(photoPicker, animated: true, completion: nil)
+    }
+    
+    private func pickUsingCamera() {
+        let cameraController = UIImagePickerController()
+        cameraController.sourceType = .camera
+        cameraController.allowsEditing = true
+        cameraController.delegate = self
+        present(cameraController, animated: true)
+    }
 }
-extension ProfileViewController:PHPickerViewControllerDelegate{
+
+extension ProfileViewController: PHPickerViewControllerDelegate{
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         dismiss(animated: true)
         
@@ -73,11 +70,8 @@ extension ProfileViewController:PHPickerViewControllerDelegate{
             if item.canLoadObject(ofClass: UIImage.self){
                 item.loadObject(ofClass: UIImage.self, completionHandler: { (image, error) in
                     DispatchQueue.main.async{
-                        if let uwImage = image as? UIImage{
-                            self.profileScreen.editProfilePictureButton.setImage(
-                                uwImage.withRenderingMode(.alwaysOriginal),
-                                for: .normal
-                            )
+                        if let uwImage = image as? UIImage {
+                            self.profileScreen.profilePicture.image = uwImage
                             self.pickedImage = uwImage
                         }
                     }
@@ -86,6 +80,7 @@ extension ProfileViewController:PHPickerViewControllerDelegate{
         }
     }
 }
+
 extension ProfileViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true)
@@ -96,7 +91,7 @@ extension ProfileViewController: UINavigationControllerDelegate, UIImagePickerCo
                 for: .normal
             )
             self.pickedImage = image
-        }else{
+        } else {
             // Do your thing for No image loaded...
         }
     }
