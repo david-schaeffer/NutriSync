@@ -26,8 +26,6 @@ class EducationViewController: UIViewController, ArticleScrollViewDelegate {
         educationView.articleView.searchController.searchResultsUpdater = self
         navigationItem.searchController = educationView.articleView.searchController
         navigationItem.title = "Education"
-//        navigationController?.title = "Education"
-//        navigationController?.modalPresentationStyle = .popover
         
         loadArticles { [weak self] articles in
             guard let self = self, let articles = articles else { return }

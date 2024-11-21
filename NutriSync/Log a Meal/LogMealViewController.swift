@@ -18,6 +18,5 @@ class LogMealViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 }

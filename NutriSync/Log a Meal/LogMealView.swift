@@ -9,15 +9,9 @@ import UIKit
 
 class LogMealView: UIView {
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     var logMealLabel: UILabel!
     var mealLabel: UILabel!
     var mealTextField: UITextField!
-    var eventLabel:UILabel!
-    var eventTextField: UITextField!
 
     var moodLabel: UILabel!
     var stressLabel: UILabel!
@@ -35,20 +29,22 @@ class LogMealView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
-        setupMoodScrollView()
         setupLogMealLabel()
         setupMealLabel()
-        setupEventLabel()
         setupMealTextField()
         setupMoodLabel()
+        setupMoodScrollView()
         setupMoodStackView()
         setupStressLabel()
         setupStressSlider()
         setupStressMinLabel()
         setupStressMaxLabel()
-        setupEventTextField()
         setupLogButton()
         initConstraints()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func setupLogMealLabel() {
@@ -58,6 +54,7 @@ class LogMealView: UIView {
         logMealLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(logMealLabel)
     }
+    
     func setupMealLabel() {
         mealLabel = UILabel()
         mealLabel.text = "Meal"
@@ -66,52 +63,23 @@ class LogMealView: UIView {
         addSubview(mealLabel)
     }
 
-    func setupMealTextField(){
+    func setupMealTextField() {
         mealTextField = UITextField()
         mealTextField.placeholder = "What did you eat?"
         mealTextField.textColor = .lightGray
         mealTextField.borderStyle = .roundedRect
-        mealTextField.font = UIFont.systemFont(ofSize: 18)
+        mealTextField.font = UIFont.systemFont(ofSize: 16)
         mealTextField.textColor = .black
         mealTextField.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(mealTextField)
-    }
-    func setupEventLabel() {
-        eventLabel = UILabel()
-        eventLabel.text = "Event"
-        eventLabel.font = UIFont.boldSystemFont(ofSize: 16)
-        eventLabel.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(eventLabel)
-    }
-    func setupEventTextField(){
-        eventTextField = UITextField()
-        eventTextField.placeholder = "What event do you have coming up?"
-        eventTextField.textColor = .lightGray
-        eventTextField.borderStyle = .roundedRect
-        eventTextField.font = UIFont.systemFont(ofSize: 18)
-        eventTextField.textColor = .black
-        eventTextField.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(eventTextField)
+        addSubview(mealTextField)
     }
     
-    func setupMoodLabel(){
+    func setupMoodLabel() {
         moodLabel = UILabel()
         moodLabel.text = "Mood"
-        moodLabel.font = UIFont.systemFont(ofSize: 24)
-        moodLabel.textColor = .black
-        moodLabel.textAlignment = .center
+        moodLabel.font = UIFont.boldSystemFont(ofSize: 16)
         moodLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(moodLabel)
-    }
-    
-    func setupStressLabel(){
-        stressLabel = UILabel()
-        stressLabel.text = "Stress"
-        stressLabel.font = UIFont.systemFont(ofSize: 24)
-        stressLabel.textColor = .black
-        stressLabel.textAlignment = .center
-        stressLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(stressLabel)
+        addSubview(moodLabel)
     }
     
     func setupMoodScrollView() {
@@ -126,41 +94,47 @@ class LogMealView: UIView {
         moodStackView.axis = .horizontal
         moodStackView.spacing = 12
         moodStackView.translatesAutoresizingMaskIntoConstraints = false
-        moodStackView.addSubview(moodStackView)
+        moodScrollView.addSubview(moodStackView)
             
-            let moods = ["Anger", "Fear", "Sadness", "Disgust", "Content", "Enjoyment"]
-                for mood in moods {
-                    let button = UIButton()
-                    button.setTitle(mood, for: .normal)
-                    button.setTitleColor(.black, for: .normal)
-                    button.titleLabel?.font = .systemFont(ofSize: 16)
-                    
-                    var config = UIButton.Configuration.plain()
-                    config.title = mood
-                    config.baseForegroundColor = .black
-                    config.baseBackgroundColor = .white
-                    config.cornerStyle = .capsule
-                    
-                    config.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10)
-                    
-                    button.configuration = config
-                    
-                    button.layer.borderWidth = 1
-                    button.layer.borderColor = UIColor.systemGray4.cgColor
-                    button.layer.cornerRadius = 20
-                    
+        let moods = ["Anger", "Fear", "Sadness", "Disgust", "Content", "Enjoyment"]
+            for mood in moods {
+                let button = UIButton()
+                button.setTitle(mood, for: .normal)
+                button.setTitleColor(.black, for: .normal)
+                button.titleLabel?.font = .systemFont(ofSize: 16)
+                
+                var config = UIButton.Configuration.plain()
+                config.title = mood
+                config.baseForegroundColor = .black
+                config.baseBackgroundColor = .white
+                config.cornerStyle = .capsule
+                
+                config.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10)
+                
+                button.configuration = config
+                
+                button.layer.borderWidth = 1
+                button.layer.borderColor = UIColor.systemGray4.cgColor
+                button.layer.cornerRadius = 20
+                
 
-                    moodStackView.addArrangedSubview(button)
-                    
-                   
-                }
-        }
+                moodStackView.addArrangedSubview(button)
+                
+               // TODO: add selection interaction
+            }
+    }
     
-
+    func setupStressLabel() {
+        stressLabel = UILabel()
+        stressLabel.text = "Stress"
+        stressLabel.font = UIFont.systemFont(ofSize: 16)
+        stressLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(stressLabel)
+    }
     
     func setupStressSlider() {
         stressSlider = UISlider()
-        stressSlider.minimumValue = 1
+        stressSlider.minimumValue = 0
         stressSlider.maximumValue = 10
         stressSlider.value = 1
         stressSlider.translatesAutoresizingMaskIntoConstraints = false
@@ -169,7 +143,7 @@ class LogMealView: UIView {
     
     func setupStressMinLabel() {
         stressMinLabel = UILabel()
-        stressMinLabel.text = "1"
+        stressMinLabel.text = "0"
         stressMinLabel.textColor = .secondaryLabel
         stressMinLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(stressMinLabel)
@@ -197,49 +171,45 @@ class LogMealView: UIView {
         NSLayoutConstraint.activate([
             logMealLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
             logMealLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            
+            mealLabel.topAnchor.constraint(equalTo: logMealLabel.bottomAnchor, constant: 16),
+            mealLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
 
-            mealTextField.topAnchor.constraint(equalTo: logMealLabel.bottomAnchor, constant: 16),
+            mealTextField.topAnchor.constraint(equalTo: mealLabel.bottomAnchor, constant: 16),
             mealTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             mealTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
 
             moodLabel.topAnchor.constraint(equalTo: mealTextField.bottomAnchor, constant: 16),
-                moodLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            moodLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
 
-                moodScrollView.topAnchor.constraint(equalTo: moodLabel.bottomAnchor, constant: 16),
-                moodScrollView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-                moodScrollView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-                moodScrollView.heightAnchor.constraint(equalToConstant: 44),
+            moodScrollView.topAnchor.constraint(equalTo: moodLabel.bottomAnchor, constant: 16),
+            moodScrollView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            moodScrollView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            moodScrollView.heightAnchor.constraint(equalToConstant: 44),
 
-                moodStackView.topAnchor.constraint(equalTo: moodScrollView.topAnchor),
-                moodStackView.leadingAnchor.constraint(equalTo: moodScrollView.leadingAnchor),
-                moodStackView.trailingAnchor.constraint(equalTo: moodScrollView.trailingAnchor),
-                moodStackView.bottomAnchor.constraint(equalTo: moodScrollView.bottomAnchor),
-                moodStackView.heightAnchor.constraint(equalTo: moodScrollView.heightAnchor),
+            moodStackView.topAnchor.constraint(equalTo: moodScrollView.topAnchor),
+            moodStackView.leadingAnchor.constraint(equalTo: moodScrollView.leadingAnchor),
+            moodStackView.trailingAnchor.constraint(equalTo: moodScrollView.trailingAnchor),
+            moodStackView.bottomAnchor.constraint(equalTo: moodScrollView.bottomAnchor),
+            moodStackView.heightAnchor.constraint(equalTo: moodScrollView.heightAnchor),
 
-                stressLabel.topAnchor.constraint(equalTo: moodScrollView.bottomAnchor, constant: 16),
-                stressLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            stressLabel.topAnchor.constraint(equalTo: moodScrollView.bottomAnchor, constant: 16),
+            stressLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
 
-                stressSlider.topAnchor.constraint(equalTo: stressLabel.bottomAnchor, constant: 8),
-                stressSlider.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-                stressSlider.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            stressSlider.topAnchor.constraint(equalTo: stressLabel.bottomAnchor, constant: 8),
+            stressSlider.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            stressSlider.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
 
-                stressMinLabel.leadingAnchor.constraint(equalTo: stressSlider.leadingAnchor),
+            stressMinLabel.leadingAnchor.constraint(equalTo: stressSlider.leadingAnchor),
             stressMinLabel.topAnchor.constraint(equalTo: stressSlider.bottomAnchor, constant: 4),
 
             stressMaxLabel.trailingAnchor.constraint(equalTo: stressSlider.trailingAnchor),
             stressMaxLabel.topAnchor.constraint(equalTo: stressSlider.bottomAnchor, constant: 4),
-
-            eventLabel.topAnchor.constraint(equalTo: stressSlider.bottomAnchor, constant: 16),
-            eventLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             
-            eventTextField.topAnchor.constraint(equalTo: eventLabel.bottomAnchor, constant: 16),
-            eventTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            eventTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            
-                logButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16),
-                logButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-                logButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-                logButton.heightAnchor.constraint(equalToConstant: 50)
-            ])
+            logButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            logButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            logButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            logButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
     }
 }
