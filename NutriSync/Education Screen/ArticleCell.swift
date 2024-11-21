@@ -57,12 +57,6 @@ class ArticleCell: UICollectionViewCell {
         articleView.layer.cornerRadius = 10
         articleView.layer.addSublayer(gradientLayer)
         
-        // Support tapping
-        articleView.isUserInteractionEnabled = true
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        tapGesture.numberOfTapsRequired = 1
-        articleView.addGestureRecognizer(tapGesture)
-        
         articleView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(articleView)
     }
@@ -92,13 +86,9 @@ class ArticleCell: UICollectionViewCell {
         ])
     }
     
-    @objc private func handleTap() {
-        print("Tapped tag: \(articleId!)")
-    }
-    
     func configure(with article: Article) {
-        if let backgroundImageUrl: URL = article.backgroundImage?.url {
-            URLSession.shared.dataTask(with: backgroundImageUrl) { data, _, _ in
+        if let thumbnailUrl: URL = article.thumbnail?.url {
+            URLSession.shared.dataTask(with: thumbnailUrl) { data, _, _ in
                 guard let imageData = data else { return }
                 
                 DispatchQueue.main.async {

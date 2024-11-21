@@ -11,11 +11,7 @@ class InsightsViewController: UIViewController {
     
     var insightsView: InsightsView!
     
-    let suggestedArticles: [ArticleThumbnail] = [
-        ArticleThumbnail(id: UUID().uuidString, title: "Article 1 with a long title to see what happens", backgroundImage: UIImage(systemName: "heart.fill")!),
-        ArticleThumbnail(id: UUID().uuidString, title: "Article 2", backgroundImage: UIImage(systemName: "person.fill")!),
-        ArticleThumbnail(id: UUID().uuidString, title: "Article 3", backgroundImage: UIImage(systemName: "book.fill")!),
-    ]
+    let suggestedArticles: [Article] = []
     
     override func loadView() {
         self.insightsView = InsightsView()

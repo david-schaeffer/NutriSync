@@ -10,8 +10,10 @@ import UIKit
 class ArticleScrollView: UIView {
     var collectionView: UICollectionView!
     var flowLayout: UICollectionViewFlowLayout!
-    var compositionalLayout: UICollectionViewCompositionalLayout!
-    var articles: [Article] = []
+//    var compositionalLayout: UICollectionViewCompositionalLayout!
+    private var articles: [Article] = []
+    
+    weak var delegate: ArticleScrollViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -83,6 +85,14 @@ extension ArticleScrollView: UICollectionViewDataSource {
 //        
 //    }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let articleCell = collectionView.cellForItem(at: indexPath) as? ArticleCell else {
+            fatalError("Unable to find ArticleCell")
+        }
+//        guard let articleId = articleCell?.articleId else { return }
+        delegate?.articleScrollView(self, didSelectArticle: articleCell)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return articles.count
     }
@@ -102,4 +112,8 @@ extension ArticleScrollView: UICollectionViewDelegateFlowLayout {
         let cellWidth = cellHeight
         return CGSize(width: cellWidth, height: cellHeight)
     }
+}
+
+protocol ArticleScrollViewDelegate: AnyObject {
+    func articleScrollView(_ scrollView: ArticleScrollView, didSelectArticle article: ArticleCell)
 }

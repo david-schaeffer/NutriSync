@@ -7,43 +7,34 @@
 
 import Contentful
 
-final class Article: EntryDecodable, FieldKeysQueryable {
+final class Article: Resource, EntryDecodable, FieldKeysQueryable {
+    let sys: Sys
+    
     
     static let contentTypeId: String = "article"
-    
-    // FlatResource members
-    let id: String
-    let localeCode: String?
-    let updatedAt: Date?
-    let createdAt: Date?
     
     let title: String?
     let content: RichTextDocument? // figure out type
     let categories: [String]?
     
-    var backgroundImage: Asset?
+    var thumbnail: Asset?
     
     public required init(from decoder: Decoder) throws {
-        let sys = try decoder.sys()
+        sys = try decoder.sys()
         
-        id = sys.id
-        localeCode = sys.locale
-        updatedAt = sys.updatedAt
-        createdAt = sys.createdAt
-        
-        let fields = try decoder.contentfulFieldsContainer(keyedBy: Article.FieldKeys.self)
+        let fields = try decoder.contentfulFieldsContainer(keyedBy: FieldKeys.self)
         
         self.title = try fields.decodeIfPresent(String.self, forKey: .title)
         self.content = try fields.decodeIfPresent(RichTextDocument.self, forKey: .content)
         self.categories = try fields.decodeIfPresent(Array<String>.self, forKey: .categories)
         
-        try fields.resolveLink(forKey: .backgroundImage, decoder: decoder) { [weak self] backgroundImage in
-            self?.backgroundImage = backgroundImage as? Asset
+        try fields.resolveLink(forKey: .thumbnail, decoder: decoder) { [weak self] thumbnail in
+            self?.thumbnail = thumbnail as? Asset
         }
     }
     
     enum FieldKeys: String, CodingKey {
-        case backgroundImage
+        case thumbnail
         case title, content, categories
     }
 }
