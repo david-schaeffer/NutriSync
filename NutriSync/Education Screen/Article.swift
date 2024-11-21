@@ -12,6 +12,11 @@ final class Article: Resource, EntryDecodable, FieldKeysQueryable {
     
     
     static let contentTypeId: String = "article"
+    static let categoryOrder: [String: Int] = [
+        "Featured": 0,
+        "Sad": 1,
+        "Angry": 2
+    ]
     
     let title: String?
     let content: RichTextDocument? // figure out type

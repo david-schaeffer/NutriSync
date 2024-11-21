@@ -27,7 +27,7 @@ class InsightsViewController: UIViewController, ArticleScrollViewDelegate {
 
         loadArticles { [weak self] articles in
             guard let self = self, let articles = articles else { return }
-            self.insightsView.suggestedArticles.loadArticles(with: articles)
+            self.insightsView.suggestedArticles.loadArticles(with: articles, sectionStyle: .single)
         }
     }
     

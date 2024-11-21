@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import Contentful
 
 class ArticleScrollView: UIView {
     var collectionView: UICollectionView!
-    var flowLayout: UICollectionViewFlowLayout!
-//    var compositionalLayout: UICollectionViewCompositionalLayout!
-    private var articles: [Article] = []
+    var compositionalLayout: UICollectionViewCompositionalLayout!
+    var searchController: UISearchController!
+    
+    private var sections: [Section] = []
     
     weak var delegate: ArticleScrollViewDelegate?
     
@@ -25,40 +27,42 @@ class ArticleScrollView: UIView {
     }
     
     private func setupView() {
+        setupSearchController()
         setupCollectionView()
         
         initConstraints()
     }
 
     private func setupCollectionView() {
-        flowLayout = UICollectionViewFlowLayout()
-        flowLayout.scrollDirection = .horizontal
-        flowLayout.minimumInteritemSpacing = 20
-        flowLayout.minimumLineSpacing = 20
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10)
         
-//        let inset: CGFloat = 5
-//        
-//        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalHeight(1))
-//        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-//        item.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset)
-//        
-//        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-//        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-//        
-//        let section = NSCollectionLayoutSection(group: group)
-//        section.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset)
-//        compositionalLayout = UICollectionViewCompositionalLayout(section: section)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(200))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
-//        compositionalLayout = UICollectionViewCompositionalLayout(sectionProvider: <#T##UICollectionViewCompositionalLayoutSectionProvider##UICollectionViewCompositionalLayoutSectionProvider##(Int, any NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection?#>)
+        let headerItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50))
+        let headerItem = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerItemSize, elementKind: "header", alignment: .top)
         
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
+        section.boundarySupplementaryItems = [headerItem]
+        compositionalLayout = UICollectionViewCompositionalLayout(section: section)
+        
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: compositionalLayout)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(ArticleCell.self, forCellWithReuseIdentifier: ArticleCell.identifier)
-//        collectionView.register(ArticleHeaderView.self, forSupplementaryViewOfKind: "header", withReuseIdentifier: ArticleHeaderView.identifier)
+        collectionView.register(ArticleHeaderView.self, forSupplementaryViewOfKind: "header", withReuseIdentifier: ArticleHeaderView.identifier)
         addSubview(collectionView)
+    }
+    
+    private func setupSearchController() {
+        searchController = UISearchController()
+        searchController.searchBar.placeholder = "Search articles"
+        searchController.searchBar.searchBarStyle = .minimal
     }
     
     private func initConstraints() {
@@ -70,39 +74,93 @@ class ArticleScrollView: UIView {
         ])
     }
     
-    func loadArticles(with articles: [Article]) {
-        self.articles = articles
+    func getArticles() -> [Article] {
+        return sections.flatMap(\.items)
+    }
+    
+    func loadArticles(with articles: [Article], sectionStyle: SectionStyle) {
+        switch sectionStyle {
+        case .single:
+            self.sections = [Section(items: articles, header: "Suggested Articles")]
+        case .byCategory:
+            let categoryDictionary: [String: [Article]] = articles.reduce(into: [:]) { result, article in
+                guard let categories = article.categories else { return }
+                for category in categories {
+                    result[category, default: []].append(article)
+                }
+            }
+            
+            var sections: [Section] = []
+            
+            for key in categoryDictionary.keys.sorted(by: { Article.categoryOrder[$0] ?? 0 < Article.categoryOrder[$1] ?? 0 }) {
+                let categoryArticles = categoryDictionary[key]!
+                let section = Section(items: categoryArticles, header: key)
+                sections.append(section)
+            }
+            
+            self.sections = sections
+            
+        }
+        
         collectionView.reloadData()
     }
 }
 
 extension ArticleScrollView: UICollectionViewDataSource {
-//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ArticleHeaderView", for: indexPath) as? ArticleHeaderView else {
-//            return ArticleHeaderView()
-//        }
-//        
-//        
-//    }
+    /// Represents a section in the data source.
+    struct Section {
+        
+        /// The items that comprise the section.
+        let items: [Article]
+        
+        let header: String
+    }
+    
+    /// Describes the ways that items can be distributed across sections.
+    enum SectionStyle {
+
+        /// Items are all found in one section.
+        case single
+        
+        /// Items are distributed across multiple sections based on their category identifier(s).
+        case byCategory
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        sections.count
+    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let articleCell = collectionView.cellForItem(at: indexPath) as? ArticleCell else {
             fatalError("Unable to find ArticleCell")
         }
-//        guard let articleId = articleCell?.articleId else { return }
+        
         delegate?.articleScrollView(self, didSelectArticle: articleCell)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return articles.count
+        return sections[section].items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ArticleCell.identifier, for: indexPath) as? ArticleCell else {
             return UICollectionViewCell()
         }
-        cell.configure(with: articles[indexPath.item])
+        
+        let article = sections[indexPath.section].items[indexPath.item]
+        cell.configure(with: article)
+        
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ArticleHeaderView.identifier, for: indexPath) as? ArticleHeaderView else {
+            return ArticleHeaderView()
+        }
+        
+        headerView.titleLabel.text = sections[indexPath.section].header
+        
+        return headerView
     }
 }
 

@@ -12,6 +12,7 @@ class EducationViewController: UIViewController, ArticleScrollViewDelegate {
    
     private var educationView: EducationView!
     private let client = ContentfulClient()
+    private var allArticles: [Article] = []
     
     override func loadView() {
         self.educationView = EducationView()
@@ -21,21 +22,18 @@ class EducationViewController: UIViewController, ArticleScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        educationView.featuredArticles.delegate = self
-        educationView.sadArticles.delegate = self
-        educationView.angryArticles.delegate = self
+        educationView.articleView.delegate = self
+        educationView.articleView.searchController.searchResultsUpdater = self
+        navigationItem.searchController = educationView.articleView.searchController
+        navigationItem.title = "Education"
+//        navigationController?.title = "Education"
+//        navigationController?.modalPresentationStyle = .popover
         
         loadArticles { [weak self] articles in
             guard let self = self, let articles = articles else { return }
-            let categoryDictionary: [String: [Article]] = articles.reduce(into: [:]) { result, article in
-                guard let categories = article.categories else { return }
-                for category in categories {
-                    result[category, default: []].append(article)
-                }
-            }
-            self.educationView.featuredArticles.loadArticles(with: categoryDictionary["Featured"] ?? [])
-            self.educationView.sadArticles.loadArticles(with: categoryDictionary["Sad"] ?? [])
-            self.educationView.angryArticles.loadArticles(with: categoryDictionary["Angry"] ?? [])
+            
+            self.allArticles = articles
+            self.educationView.articleView.loadArticles(with: articles, sectionStyle: .byCategory)
         }
     }
     
@@ -59,5 +57,26 @@ class EducationViewController: UIViewController, ArticleScrollViewDelegate {
             }
         }
     }
+}
 
+extension EducationViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text else { return }
+        
+        if searchText.isEmpty {
+            self.educationView.articleView.loadArticles(with: allArticles, sectionStyle: .byCategory)
+            return
+        }
+        
+        var matchingArticles: [Article] = []
+        allArticles.forEach { article in
+            if article.title!.contains(searchText) {
+                matchingArticles.append(article)
+            }
+        }
+        
+        DispatchQueue.main.async {
+            self.educationView.articleView.loadArticles(with: matchingArticles, sectionStyle: .byCategory)
+        }
+    }
 }
