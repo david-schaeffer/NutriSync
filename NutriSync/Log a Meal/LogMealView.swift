@@ -9,12 +9,9 @@ import UIKit
 
 class LogMealView: UIView {
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+   
     
     var logMealLabel: UILabel!
-    var mealLabel: UILabel!
     var mealTextField: UITextField!
     var eventLabel:UILabel!
     var eventTextField: UITextField!
@@ -37,7 +34,6 @@ class LogMealView: UIView {
         self.backgroundColor = .white
         setupMoodScrollView()
         setupLogMealLabel()
-        setupMealLabel()
         setupEventLabel()
         setupMealTextField()
         setupMoodLabel()
@@ -58,13 +54,7 @@ class LogMealView: UIView {
         logMealLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(logMealLabel)
     }
-    func setupMealLabel() {
-        mealLabel = UILabel()
-        mealLabel.text = "Meal"
-        mealLabel.font = UIFont.boldSystemFont(ofSize: 16)
-        mealLabel.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(mealLabel)
-    }
+    
 
     func setupMealTextField(){
         mealTextField = UITextField()
@@ -74,12 +64,14 @@ class LogMealView: UIView {
         mealTextField.font = UIFont.systemFont(ofSize: 18)
         mealTextField.textColor = .black
         mealTextField.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(mealTextField)
+        addSubview(mealTextField)
     }
-    func setupEventLabel() {
+    func setupEventLabel(){
         eventLabel = UILabel()
         eventLabel.text = "Event"
-        eventLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        eventLabel.font = UIFont.systemFont(ofSize: 20)
+        eventLabel.textColor = .black
+        eventLabel.textAlignment = .center
         eventLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(eventLabel)
     }
@@ -91,27 +83,27 @@ class LogMealView: UIView {
         eventTextField.font = UIFont.systemFont(ofSize: 18)
         eventTextField.textColor = .black
         eventTextField.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(eventTextField)
+        addSubview(eventTextField)
     }
     
     func setupMoodLabel(){
         moodLabel = UILabel()
         moodLabel.text = "Mood"
-        moodLabel.font = UIFont.systemFont(ofSize: 24)
+        moodLabel.font = UIFont.systemFont(ofSize: 20)
         moodLabel.textColor = .black
         moodLabel.textAlignment = .center
         moodLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(moodLabel)
+        addSubview(moodLabel)
     }
     
     func setupStressLabel(){
         stressLabel = UILabel()
         stressLabel.text = "Stress"
-        stressLabel.font = UIFont.systemFont(ofSize: 24)
+        stressLabel.font = UIFont.systemFont(ofSize: 20)
         stressLabel.textColor = .black
         stressLabel.textAlignment = .center
         stressLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(stressLabel)
+        addSubview(stressLabel)
     }
     
     func setupMoodScrollView() {
@@ -126,7 +118,7 @@ class LogMealView: UIView {
         moodStackView.axis = .horizontal
         moodStackView.spacing = 12
         moodStackView.translatesAutoresizingMaskIntoConstraints = false
-        moodStackView.addSubview(moodStackView)
+        moodScrollView.addSubview(moodStackView)
             
             let moods = ["Anger", "Fear", "Sadness", "Disgust", "Content", "Enjoyment"]
                 for mood in moods {
@@ -229,7 +221,7 @@ class LogMealView: UIView {
             stressMaxLabel.trailingAnchor.constraint(equalTo: stressSlider.trailingAnchor),
             stressMaxLabel.topAnchor.constraint(equalTo: stressSlider.bottomAnchor, constant: 4),
 
-            eventLabel.topAnchor.constraint(equalTo: stressSlider.bottomAnchor, constant: 16),
+            eventLabel.topAnchor.constraint(equalTo: stressMinLabel.bottomAnchor, constant: 16),
             eventLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             
             eventTextField.topAnchor.constraint(equalTo: eventLabel.bottomAnchor, constant: 16),
@@ -241,5 +233,9 @@ class LogMealView: UIView {
                 logButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
                 logButton.heightAnchor.constraint(equalToConstant: 50)
             ])
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
