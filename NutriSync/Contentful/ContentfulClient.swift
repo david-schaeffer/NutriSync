@@ -27,6 +27,10 @@ final class ContentfulClient {
         self.client.fetchArray(of: Article.self, then: completion)
     }
     
+    func fetchArticles(withQuery query: QueryOn<Article>, completion: @escaping (Result<HomogeneousArrayResponse<Article>, Error>) -> Void) {
+        self.client.fetchArray(of: Article.self, matching: query, then: completion)
+    }
+    
     func fetchArticle(withId id: String, completion: @escaping (Result<Article, Error>) -> Void) {
         self.client.fetch(Article.self, id: id, then: completion)
     }
