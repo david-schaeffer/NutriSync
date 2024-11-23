@@ -6,13 +6,16 @@
 //
 
 import UIKit
-import Contentful
         
-class InsightsViewController: UIViewController, ArticleScrollViewDelegate {
+class InsightsViewController: UIViewController {
     
     var insightsView: InsightsView!
     
-    let suggestedArticles: [Article] = []
+    let suggestedArticles: [ArticleThumbnail] = [
+        ArticleThumbnail(id: UUID().uuidString, title: "Article 1 with a long title to see what happens", backgroundImage: UIImage(systemName: "heart.fill")!),
+        ArticleThumbnail(id: UUID().uuidString, title: "Article 2", backgroundImage: UIImage(systemName: "person.fill")!),
+        ArticleThumbnail(id: UUID().uuidString, title: "Article 3", backgroundImage: UIImage(systemName: "book.fill")!),
+    ]
     
     override func loadView() {
         self.insightsView = InsightsView()
@@ -22,37 +25,12 @@ class InsightsViewController: UIViewController, ArticleScrollViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        insightsView.suggestedArticles.delegate = self
 
-        loadArticles { [weak self] articles in
-            guard let self = self, let articles = articles else { return }
-            self.insightsView.suggestedArticles.loadArticles(with: articles, sectionStyle: .single)
-        }
+        loadArticles()
     }
     
-    private func loadArticles(completion: @escaping ([Article]?) -> Void) {
-        let client = ContentfulClient()
-        let query = QueryOn<Article>().where(field: .categories, .includes(["Featured"]))
-        
-        // TODO: Add loading animation during load
-        
-        DispatchQueue.global(qos: .userInitiated).async {
-            client.fetchArticles(withQuery: query) { (result: Result<HomogeneousArrayResponse<Article>, Error>) in
-                switch result {
-                case .success(let articlesResponse):
-                    DispatchQueue.main.async {
-                        completion(articlesResponse.items)
-                    }
-                case .failure(let error):
-                    print(error)
-                }
-            }
-        }
+    private func loadArticles() {
+        insightsView.suggestedArticles.loadArticles(with: suggestedArticles)
     }
-    
-    func articleScrollView(_ scrollView: ArticleScrollView, didSelectArticle article: ArticleCell) {
-        let articleVC = ArticleViewController(articleId: article.articleId)
-        navigationController?.pushViewController(articleVC, animated: true)
-    }
+
 }
