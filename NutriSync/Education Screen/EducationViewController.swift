@@ -70,6 +70,8 @@ extension EducationViewController: UISearchResultsUpdating {
         allArticles.forEach { article in
             if article.title!.contains(searchText) {
                 matchingArticles.append(article)
+            } else if article.categories?.contains(where: { $0.contains(searchText) }) ?? false {
+                matchingArticles.append(article)
             }
         }
         

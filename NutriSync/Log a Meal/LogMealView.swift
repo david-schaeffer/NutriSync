@@ -84,7 +84,7 @@ class LogMealView: UIView {
     
     func setupMoodScrollView() {
         moodScrollView = UIScrollView()
-        moodScrollView.showsHorizontalScrollIndicator = true
+        moodScrollView.showsHorizontalScrollIndicator = false
         moodScrollView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(moodScrollView)
     }
@@ -105,7 +105,6 @@ class LogMealView: UIView {
                 
                 var config = UIButton.Configuration.plain()
                 config.title = mood
-                config.baseForegroundColor = .black
                 config.baseBackgroundColor = .white
                 config.cornerStyle = .capsule
                 
@@ -116,18 +115,15 @@ class LogMealView: UIView {
                 button.layer.borderWidth = 1
                 button.layer.borderColor = UIColor.systemGray4.cgColor
                 button.layer.cornerRadius = 20
-                
 
                 moodStackView.addArrangedSubview(button)
-                
-               // TODO: add selection interaction
             }
     }
     
     func setupStressLabel() {
         stressLabel = UILabel()
         stressLabel.text = "Stress"
-        stressLabel.font = UIFont.systemFont(ofSize: 16)
+        stressLabel.font = UIFont.boldSystemFont(ofSize: 16)
         stressLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(stressLabel)
     }
@@ -161,7 +157,7 @@ class LogMealView: UIView {
         logButton = UIButton()
         logButton.setTitle("Log", for: .normal)
         logButton.titleLabel?.font = .boldSystemFont(ofSize: 18)
-        logButton.backgroundColor = .black
+        logButton.backgroundColor = .accent
         logButton.layer.cornerRadius = 25
         logButton.translatesAutoresizingMaskIntoConstraints = false
         addSubview(logButton)

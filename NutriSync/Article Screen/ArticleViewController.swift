@@ -53,7 +53,6 @@ class ArticleViewController: UIViewController {
             // Article content
             article.content?.content.forEach {
                 self.renderNode($0)
-//                print($0)
             }
         }
     }

@@ -51,7 +51,7 @@ class LogMoodView: UIView {
     
     func setupMoodScrollView() {
         moodScrollView = UIScrollView()
-        moodScrollView.showsHorizontalScrollIndicator = true
+        moodScrollView.showsHorizontalScrollIndicator = false
         moodScrollView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(moodScrollView)
     }
@@ -129,7 +129,7 @@ class LogMoodView: UIView {
         logButton = UIButton()
         logButton.setTitle("Log", for: .normal)
         logButton.titleLabel?.font = .boldSystemFont(ofSize: 18)
-        logButton.backgroundColor = .black
+        logButton.backgroundColor = .accent
         logButton.layer.cornerRadius = 25
         logButton.translatesAutoresizingMaskIntoConstraints = false
         addSubview(logButton)
