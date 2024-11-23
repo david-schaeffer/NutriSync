@@ -12,7 +12,7 @@ class InsightsViewController: UIViewController, ArticleScrollViewDelegate {
     
     var insightsView: InsightsView!
     
-    let suggestedArticles: [Article] = []
+    let suggestedArticles: [Article] = [] 
     
     override func loadView() {
         self.insightsView = InsightsView()
