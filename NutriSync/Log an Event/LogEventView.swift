@@ -125,7 +125,7 @@ class LogEventView: UIView {
     
     func setupStressLabel() {
         stressLabel = UILabel()
-        stressLabel.text = "Stress"
+        stressLabel.text = "Stress: 1"
         stressLabel.font = .boldSystemFont(ofSize: 17)
         stressLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(stressLabel)
@@ -135,6 +135,7 @@ class LogEventView: UIView {
         stressSlider = UISlider()
         stressSlider.minimumValue = 0
         stressSlider.maximumValue = 10
+        stressSlider.value = 1
         stressSlider.isContinuous = true
         stressSlider.translatesAutoresizingMaskIntoConstraints = false
         addSubview(stressSlider)

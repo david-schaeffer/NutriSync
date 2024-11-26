@@ -122,7 +122,7 @@ class LogMealView: UIView {
     
     func setupStressLabel() {
         stressLabel = UILabel()
-        stressLabel.text = "Stress"
+        stressLabel.text = "Stress: 1"
         stressLabel.font = UIFont.boldSystemFont(ofSize: 16)
         stressLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(stressLabel)

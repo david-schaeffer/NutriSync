@@ -19,6 +19,8 @@ class LogEventViewController: UIViewController {
         }
         
         self.logEventView.logButton.addTarget(self, action: #selector(logButtonTapped), for: .touchUpInside)
+        
+        self.logEventView.stressSlider.addTarget(self, action: #selector(stressSliderValueChanged), for: .valueChanged)
     }
     
     @objc private func moodButtonTapped(_ sender: UIButton) {
@@ -55,5 +57,9 @@ class LogEventViewController: UIViewController {
                 logNavigationController?.dismiss(animated: false)
             }
         }
+    }
+    
+    @objc private func stressSliderValueChanged(_ sender: UISlider) {
+        self.logEventView.stressLabel.text = "Stress: \(Int(sender.value))"
     }
 }
