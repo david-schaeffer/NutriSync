@@ -15,7 +15,7 @@ class DayViewController: UIViewController {
     var moodStack: UIStackView!
     
     var selectedDate: Date?
-    var moodOptions = ["Happy", "Sad", "Excited"]
+    var moodOptions = ["Enjoyment", "Content", "Disgust"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,7 +87,7 @@ class DayViewController: UIViewController {
         
 
         stressLabel = UILabel()
-        stressLabel.text = "Stress"
+        stressLabel.text = "Stress: 5"
         stressLabel.font = UIFont.systemFont(ofSize: 16)
         stressLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stressLabel)

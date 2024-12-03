@@ -151,7 +151,7 @@ class InsightsView: UIView {
             comparisonImage.topAnchor.constraint(equalTo: comparisonLabel.bottomAnchor, constant: 10),
             comparisonImage.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             comparisonImage.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            comparisonImage.heightAnchor.constraint(equalToConstant: 150),
+            comparisonImage.heightAnchor.constraint(equalToConstant: 300),
             
             // Mood Label Constraints
             moodLabel.topAnchor.constraint(equalTo: comparisonImage.bottomAnchor, constant: 30),
@@ -161,7 +161,7 @@ class InsightsView: UIView {
             moodImage.topAnchor.constraint(equalTo: moodLabel.bottomAnchor, constant: 10),
             moodImage.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             moodImage.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            moodImage.heightAnchor.constraint(equalToConstant: 120),
+            moodImage.heightAnchor.constraint(equalToConstant: 300),
             
             // Stress Label Constraints
             stressLabel.topAnchor.constraint(equalTo: moodImage.bottomAnchor, constant: 30),
@@ -171,7 +171,7 @@ class InsightsView: UIView {
             stressImage.topAnchor.constraint(equalTo: stressLabel.bottomAnchor, constant: 10),
             stressImage.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             stressImage.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            stressImage.heightAnchor.constraint(equalToConstant: 120),
+            stressImage.heightAnchor.constraint(equalToConstant: 300),
             
             suggestedArticles.topAnchor.constraint(equalTo: stressImage.bottomAnchor, constant: 20),
             suggestedArticles.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
