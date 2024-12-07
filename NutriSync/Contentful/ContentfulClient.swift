@@ -14,6 +14,7 @@ final class ContentfulClient {
         guard let contentfulSpaceId = Bundle.main.infoDictionary?["CONTENTFUL_SPACE_ID"] as? String else {
             fatalError("Missing CONTENTFUL_SPACE_ID in Info.plist")
         }
+        
         guard let contentfulAccessToken = Bundle.main.infoDictionary?["CONTENTFUL_ACCESS_TOKEN"] as? String else {
             fatalError("Missing CONTENTFUL_ACCESS_TOKEN in Info.plist")
         }

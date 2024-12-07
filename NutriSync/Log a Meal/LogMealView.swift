@@ -13,12 +13,13 @@ class LogMealView: UIView {
     var mealLabel: UILabel!
     var mealTextField: UITextField!
 
+    var moodLabelView: UIStackView!
     var moodLabel: UILabel!
-    var stressLabel: UILabel!
-
+    var moodLabelDescription: UILabel!
     var moodStackView: UIStackView!
     var moodScrollView: UIScrollView!
-
+    
+    var stressLabel: UILabel!
     var stressSlider: UISlider!
     var stressMinLabel: UILabel!
     var stressMaxLabel: UILabel!
@@ -66,7 +67,6 @@ class LogMealView: UIView {
     func setupMealTextField() {
         mealTextField = UITextField()
         mealTextField.placeholder = "What did you eat?"
-        mealTextField.textColor = .lightGray
         mealTextField.borderStyle = .roundedRect
         mealTextField.font = UIFont.systemFont(ofSize: 16)
         mealTextField.textColor = .black
@@ -79,7 +79,19 @@ class LogMealView: UIView {
         moodLabel.text = "Mood"
         moodLabel.font = UIFont.boldSystemFont(ofSize: 16)
         moodLabel.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(moodLabel)
+        
+        moodLabelDescription = UILabel()
+        moodLabelDescription.text = "How did you feel about this meal?"
+        moodLabelDescription.font = UIFont.systemFont(ofSize: 12)
+        moodLabelDescription.textColor = .lightGray
+        moodLabelDescription.translatesAutoresizingMaskIntoConstraints = false
+        
+        moodLabelView = UIStackView(arrangedSubviews: [moodLabel, moodLabelDescription])
+        moodLabelView.axis = .vertical
+        moodLabelView.alignment = .leading
+        moodLabelView.translatesAutoresizingMaskIntoConstraints = false
+        
+        addSubview(moodLabelView)
     }
     
     func setupMoodScrollView() {
@@ -175,10 +187,10 @@ class LogMealView: UIView {
             mealTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             mealTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
 
-            moodLabel.topAnchor.constraint(equalTo: mealTextField.bottomAnchor, constant: 16),
-            moodLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            moodLabelView.topAnchor.constraint(equalTo: mealTextField.bottomAnchor, constant: 16),
+            moodLabelView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
 
-            moodScrollView.topAnchor.constraint(equalTo: moodLabel.bottomAnchor, constant: 16),
+            moodScrollView.topAnchor.constraint(equalTo: moodLabelView.bottomAnchor, constant: 16),
             moodScrollView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             moodScrollView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             moodScrollView.heightAnchor.constraint(equalToConstant: 44),

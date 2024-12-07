@@ -18,6 +18,11 @@
                         <viewLayoutGuide key="safeArea" id="JuE-Cs-bxw"/>
                     </view>
                     <navigationItem key="navigationItem" id="7h3-EQ-wAH"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="userId">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hNe-OB-eLI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

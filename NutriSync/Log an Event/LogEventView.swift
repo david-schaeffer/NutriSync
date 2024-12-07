@@ -8,7 +8,9 @@ class LogEventView: UIView {
     var dateLabel: UILabel!
     var datePicker: UIDatePicker!
     var dateFormatter: DateFormatter!
+    var moodLabelView: UIStackView!
     var moodLabel: UILabel!
+    var moodLabelDescription: UILabel!
     var moodScrollView: UIScrollView!
     var moodStackView: UIStackView!
     var stressLabel: UILabel!
@@ -50,7 +52,10 @@ class LogEventView: UIView {
     
     func setupEventNameTextField() {
         eventNameTextField = UITextField()
-        eventNameTextField.placeholder = "Enter the event you are attending"
+        eventNameTextField.placeholder = "What event do you have coming up?"
+        eventNameTextField.borderStyle = .roundedRect
+        eventNameTextField.font = UIFont.systemFont(ofSize: 16)
+        eventNameTextField.textColor = .black
         eventNameTextField.translatesAutoresizingMaskIntoConstraints = false
         addSubview(eventNameTextField)
     }
@@ -75,9 +80,21 @@ class LogEventView: UIView {
     func setupMoodLabel() {
         moodLabel = UILabel()
         moodLabel.text = "Mood"
-        moodLabel.font = .boldSystemFont(ofSize: 17)
+        moodLabel.font = UIFont.boldSystemFont(ofSize: 16)
         moodLabel.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(moodLabel)
+        
+        moodLabelDescription = UILabel()
+        moodLabelDescription.text = "How do you feel about this event?"
+        moodLabelDescription.font = UIFont.systemFont(ofSize: 12)
+        moodLabelDescription.textColor = .lightGray
+        moodLabelDescription.translatesAutoresizingMaskIntoConstraints = false
+        
+        moodLabelView = UIStackView(arrangedSubviews: [moodLabel, moodLabelDescription])
+        moodLabelView.axis = .vertical
+        moodLabelView.alignment = .leading
+        moodLabelView.translatesAutoresizingMaskIntoConstraints = false
+        
+        addSubview(moodLabelView)
     }
     
     func setupMoodScrollView() {
@@ -187,10 +204,10 @@ class LogEventView: UIView {
                 datePicker.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
                 datePicker.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
 
-                moodLabel.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: 16),
-                moodLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+                moodLabelView.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: 16),
+                moodLabelView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
 
-                moodScrollView.topAnchor.constraint(equalTo: moodLabel.bottomAnchor, constant: 16),
+                moodScrollView.topAnchor.constraint(equalTo: moodLabelView.bottomAnchor, constant: 16),
                 moodScrollView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
                 moodScrollView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
                 moodScrollView.heightAnchor.constraint(equalToConstant: 44),

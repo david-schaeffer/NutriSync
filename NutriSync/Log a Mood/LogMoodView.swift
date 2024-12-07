@@ -4,7 +4,9 @@ class LogMoodView: UIView {
     
     // COMPONENTS
     var logMoodLabel: UILabel!
+    var moodLabelView: UIStackView!
     var moodLabel: UILabel!
+    var moodLabelDescription: UILabel!
     var moodScrollView: UIScrollView!
     var moodStackView: UIStackView!
     var stressLabel: UILabel!
@@ -44,9 +46,21 @@ class LogMoodView: UIView {
     func setupMoodLabel() {
         moodLabel = UILabel()
         moodLabel.text = "Mood"
-        moodLabel.font = .boldSystemFont(ofSize: 16)
+        moodLabel.font = UIFont.boldSystemFont(ofSize: 16)
         moodLabel.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(moodLabel)
+        
+        moodLabelDescription = UILabel()
+        moodLabelDescription.text = "How do you feel now?"
+        moodLabelDescription.font = UIFont.systemFont(ofSize: 12)
+        moodLabelDescription.textColor = .lightGray
+        moodLabelDescription.translatesAutoresizingMaskIntoConstraints = false
+        
+        moodLabelView = UIStackView(arrangedSubviews: [moodLabel, moodLabelDescription])
+        moodLabelView.axis = .vertical
+        moodLabelView.alignment = .leading
+        moodLabelView.translatesAutoresizingMaskIntoConstraints = false
+        
+        addSubview(moodLabelView)
     }
     
     func setupMoodScrollView() {
@@ -86,9 +100,6 @@ class LogMoodView: UIView {
                 
 
                 moodStackView.addArrangedSubview(button)
-                
-                // will need to add selection stuff here
-//                button.addTarget(self, action: #selector(toggleButtonSelection(_:)), for: .touchUpInside)
             }
     }
     
@@ -140,10 +151,10 @@ class LogMoodView: UIView {
             logMoodLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
             logMoodLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             
-            moodLabel.topAnchor.constraint(equalTo: logMoodLabel.bottomAnchor, constant: 24),
-            moodLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            moodLabelView.topAnchor.constraint(equalTo: logMoodLabel.bottomAnchor, constant: 24),
+            moodLabelView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             
-            moodScrollView.topAnchor.constraint(equalTo: moodLabel.bottomAnchor, constant: 16),
+            moodScrollView.topAnchor.constraint(equalTo: moodLabelView.bottomAnchor, constant: 16),
             moodScrollView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             moodScrollView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             moodScrollView.heightAnchor.constraint(equalToConstant: 44),

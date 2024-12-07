@@ -1,9 +1,26 @@
+//
+//  LogEventViewController.swift
+//  NutriSync
+//
+//  Created by Dana Abdo on 11/5/24.
+//
+
 import UIKit
 
 class LogEventViewController: UIViewController {
     
     var logEventView: LogEventView!
     var moods: [String] = []
+    var userId: Int!
+    
+    init(userId: Int) {
+        super.init(nibName: "LogEventViewController", bundle: nil)
+        self.userId = userId
+    }
+    
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         self.logEventView = LogEventView()
@@ -41,10 +58,9 @@ class LogEventViewController: UIViewController {
     }
     
     @objc private func logButtonTapped(_ sender: UIButton) {
-        let moodsString = self.moods.joined(separator: ", ")
-        let stressLevel = self.logEventView.stressSlider.value
-        let event = self.logEventView.eventNameTextField.text!
-        print("Logged event: \(event) with moods: \(moodsString) and stress level: \(stressLevel)")
+        Task {
+            await logEventAction()
+        }
         
         if let tabBC = sender.window?.rootViewController as? UITabBarController {
             let currentTabIndex = tabBC.selectedIndex
@@ -56,6 +72,31 @@ class LogEventViewController: UIViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 logNavigationController?.dismiss(animated: false)
             }
+        }
+    }
+    
+    @MainActor
+    private func logEventAction() async {
+        let stressLevel = Int(self.logEventView.stressSlider.value)
+        let event = self.logEventView.eventNameTextField.text!
+        let eventDate = self.logEventView.datePicker.date
+        
+        do {
+            try await PGClient.shared.connect()
+        } catch {
+            print("Failed to connect to the database: \(error)")
+        }
+        
+        do {
+            try await PGClient.shared.logEvent(userId: userId, moodTags: moods, stressLevel: stressLevel, eventName: event, eventDate: eventDate)
+        } catch {
+            fatalError("Error logging mood: \(String(reflecting: error))")
+        }
+        
+        do {
+            try await PGClient.shared.disconnect()
+        } catch {
+            print("Error disconnecting: \(error)")
         }
     }
     

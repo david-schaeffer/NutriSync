@@ -11,6 +11,14 @@ class HomeViewController: UIViewController {
     
     var homeView: HomeView!
     let tabBarHandler: UITabBarControllerDelegate = TabBarHandler()
+    var userId: Int!
+    var calendarViewDelegate: CalendarViewDelegate!
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        self.userId = 1
+        self.calendarViewDelegate = CalendarViewDelegate()
+    }
     
     override func loadView() {
         self.homeView = HomeView()
@@ -21,6 +29,8 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         self.tabBarController?.delegate = tabBarHandler
+        
+        self.homeView.monthlyProgressCalendar.delegate = calendarViewDelegate
         
         let profileButton = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle"), style: .plain, target: self, action: #selector (openProfile))
         navigationItem.rightBarButtonItem = profileButton

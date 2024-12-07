@@ -11,6 +11,16 @@ class LogMoodViewController: UIViewController {
 
     var logMoodView: LogMoodView!
     var moods: [String] = []
+    var userId: Int!
+    
+    init(userId: Int) {
+        super.init(nibName: "LogMoodViewController", bundle: nil)
+        self.userId = userId
+    }
+    
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         self.logMoodView = LogMoodView()
@@ -48,9 +58,9 @@ class LogMoodViewController: UIViewController {
     }
     
     @objc private func logButtonTapped(_ sender: UIButton) {
-        let moodsString = self.moods.joined(separator: ", ")
-        let stressLevel = self.logMoodView.stressSlider.value
-        print("Logged moods: \(moodsString) and stress level: \(stressLevel)")
+        Task {
+            await logMoodAction()
+        }
         
         if let tabBC = sender.window?.rootViewController as? UITabBarController {
             let currentTabIndex = tabBC.selectedIndex
@@ -62,6 +72,29 @@ class LogMoodViewController: UIViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 logNavigationController?.dismiss(animated: false)
             }
+        }
+    }
+    
+    @MainActor
+    private func logMoodAction() async {
+        let stressLevel = Int(self.logMoodView.stressSlider.value)
+        
+        do {
+            try await PGClient.shared.connect()
+        } catch {
+            print("Failed to connect to the database: \(error)")
+        }
+        
+        do {
+            try await PGClient.shared.logMood(userId: userId, moodTags: moods, stressLevel: stressLevel)
+        } catch {
+            fatalError("Error logging mood: \(String(reflecting: error))")
+        }
+        
+        do {
+            try await PGClient.shared.disconnect()
+        } catch {
+            print("Error disconnecting: \(error)")
         }
     }
     

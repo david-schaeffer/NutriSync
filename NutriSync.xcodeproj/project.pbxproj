@@ -10,6 +10,7 @@
 		4C3EB25EC8FC6CDDAF8D3922 /* Pods_NutriSyncTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E50C4AEBDF6ED4C3606F478 /* Pods_NutriSyncTests.framework */; };
 		5719D9DE55B66F4D95CE3A99 /* Pods_NutriSync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFDC72EF1EE460DF46ABC226 /* Pods_NutriSync.framework */; };
 		84AAE2949FE0B299EF14FB45 /* Pods_NutriSync_NutriSyncUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20D844DB4AEC6882F6D31422 /* Pods_NutriSync_NutriSyncUITests.framework */; };
+		8B5CE6102D00CDEB000369A8 /* PostgresNIO in Frameworks */ = {isa = PBXBuildFile; productRef = 8B5CE60F2D00CDEB000369A8 /* PostgresNIO */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B5CE6102D00CDEB000369A8 /* PostgresNIO in Frameworks */,
 				5719D9DE55B66F4D95CE3A99 /* Pods_NutriSync.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -252,6 +254,9 @@
 			);
 			mainGroup = 8B0AC8742CD52E6A00B84C3D;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				8BBAE20D2D00CCC60074A5F1 /* XCRemoteSwiftPackageReference "postgres-nio" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8B0AC87E2CD52E6A00B84C3D /* Products */;
 			projectDirPath = "";
@@ -728,6 +733,24 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8BBAE20D2D00CCC60074A5F1 /* XCRemoteSwiftPackageReference "postgres-nio" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/vapor/postgres-nio.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.22.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8B5CE60F2D00CDEB000369A8 /* PostgresNIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PostgresNIO;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8B0AC8752CD52E6A00B84C3D /* Project object */;
 }

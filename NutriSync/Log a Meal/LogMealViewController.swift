@@ -11,6 +11,16 @@ class LogMealViewController: UIViewController {
 
     var logMealView: LogMealView!
     var moods: [String] = []
+    var userId: Int!
+    
+    init(userId: Int) {
+        super.init(nibName: "LogMealViewController", bundle: nil)
+        self.userId = userId
+    }
+    
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         self.logMealView = LogMealView()
@@ -48,10 +58,9 @@ class LogMealViewController: UIViewController {
     }
     
     @objc private func logButtonTapped(_ sender: UIButton) {
-        let moodsString = self.moods.joined(separator: ", ")
-        let stressLevel = self.logMealView.stressSlider.value
-        let meal = self.logMealView.mealTextField.text!
-        print("Logged meal: \(meal) with moods: \(moodsString) and stress level: \(stressLevel)")
+        Task {
+            await logMealAction()
+        }
         
         if let tabBC = sender.window?.rootViewController as? UITabBarController {
             let currentTabIndex = tabBC.selectedIndex
@@ -63,6 +72,30 @@ class LogMealViewController: UIViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 logNavigationController?.dismiss(animated: false)
             }
+        }
+    }
+    
+    @MainActor
+    private func logMealAction() async {
+        let stressLevel = Int(self.logMealView.stressSlider.value)
+        let meal = self.logMealView.mealTextField.text!
+        
+        do {
+            try await PGClient.shared.connect()
+        } catch {
+            print("Failed to connect to the database: \(error)")
+        }
+        
+        do {
+            try await PGClient.shared.logMeal(userId: userId, moodTags: moods, stressLevel: stressLevel, mealDescription: meal)
+        } catch {
+            fatalError("Error logging mood: \(String(reflecting: error))")
+        }
+        
+        do {
+            try await PGClient.shared.disconnect()
+        } catch {
+            print("Error disconnecting: \(error)")
         }
     }
     

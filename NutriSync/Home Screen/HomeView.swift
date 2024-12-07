@@ -21,7 +21,6 @@ class HomeView: UIView {
     var monthlyProgressView: UIView!
     var monthlyProgressLabel: UILabel!
     var monthlyProgressCalendar: UICalendarView!
-    let calendarViewDelegate: CalendarViewDelegate = CalendarViewDelegate()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -121,7 +120,6 @@ class HomeView: UIView {
         monthlyProgressView.addSubview(monthlyProgressLabel)
         
         monthlyProgressCalendar = UICalendarView()
-        monthlyProgressCalendar.delegate = calendarViewDelegate
         monthlyProgressCalendar.calendar = Calendar(identifier: .gregorian)
         monthlyProgressCalendar.locale = Locale(identifier: "en_US_POSIX")
         monthlyProgressCalendar.fontDesign = .rounded

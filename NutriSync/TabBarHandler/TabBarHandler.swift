@@ -8,6 +8,9 @@
 import UIKit
 
 class TabBarHandler: NSObject, UITabBarControllerDelegate {
+    
+    let userId: Int = 1
+    
     var popUpView: PopUpView?
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
@@ -57,7 +60,7 @@ class TabBarHandler: NSObject, UITabBarControllerDelegate {
             let currentTabIndex = tabBC.selectedIndex
             
             let logNavigationController = tabBC.viewControllers?[currentTabIndex] as? UINavigationController
-            let logMoodVC = LogMoodViewController()
+            let logMoodVC = LogMoodViewController(userId: self.userId)
             logNavigationController?.pushViewController(logMoodVC, animated: true)
         }
     }
@@ -70,7 +73,7 @@ class TabBarHandler: NSObject, UITabBarControllerDelegate {
             let currentTabIndex = tabBC.selectedIndex
             
             let logNavigationController = tabBC.viewControllers?[currentTabIndex] as? UINavigationController
-            let logMealVC = LogMealViewController()
+            let logMealVC = LogMealViewController(userId: self.userId)
             logNavigationController?.pushViewController(logMealVC, animated: true)
         }
     }
@@ -83,7 +86,7 @@ class TabBarHandler: NSObject, UITabBarControllerDelegate {
             let currentTabIndex = tabBC.selectedIndex
             
             let logNavigationController = tabBC.viewControllers?[currentTabIndex] as? UINavigationController
-            let logEventVC = LogEventViewController()
+            let logEventVC = LogEventViewController(userId: self.userId)
             logNavigationController?.pushViewController(logEventVC, animated: true)
         }
     }
