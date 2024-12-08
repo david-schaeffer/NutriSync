@@ -16,9 +16,9 @@ class TabBarHandler: NSObject, UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         let vcIndex = tabBarController.viewControllers!.firstIndex(of: viewController)!
         
-        // if "Log selected" popUpView visible
+        // if "Log" selected
         if vcIndex == 2 {
-            // if popUpView is visible
+            // if popUpView is not visible
             if popUpView == nil {
                 popUpView = PopUpView()
                 popUpView!.logMoodButton.addTarget(self, action: #selector(logMood), for: .touchUpInside)
