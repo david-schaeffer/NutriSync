@@ -58,9 +58,9 @@ class LogMoodViewController: UIViewController {
     }
     
     @objc private func logButtonTapped(_ sender: UIButton) {
-        Task {
-            await logMoodAction()
-        }
+//        Task {
+//            await logMoodAction()
+//        }
         
         if let tabBC = sender.window?.rootViewController as? UITabBarController {
             let currentTabIndex = tabBC.selectedIndex
